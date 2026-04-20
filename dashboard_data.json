@@ -1,0 +1,1227 @@
+{
+  "kpi": {
+    "total_n": 42288,
+    "n_centers": 69,
+    "ooc_n": 12314,
+    "ooc_pct": 29.1,
+    "continuity_pct": 29.7,
+    "bp_pct": 58.7,
+    "cost_median_all": 1624,
+    "or_ooc_cont": 0.952,
+    "p_ooc_cont": 0.331,
+    "or_ooc_bp": 0.966,
+    "p_ooc_bp": 0.472,
+    "beta_ooc_cost": -0.022,
+    "p_ooc_cost": 0.249,
+    "icc_cont": 0.1202,
+    "or_ml_cont": 0.9335,
+    "auc_cont": [],
+    "auc_bp": [],
+    "r2_cost": 0.6115,
+    "adjr2_cost": 0.6114,
+    "fiscal_year": "2567",
+    "exported_at": "2026-04-20 21:12"
+  },
+  "group_summary": [
+    {
+      "out_of_catchment": "In-Catchment",
+      "n": 29974,
+      "continuity_pct": 30.05,
+      "bp_pct": 58.88,
+      "cost_median": 1619,
+      "cost_mean": 1787,
+      "age_mean": 71.4
+    },
+    {
+      "out_of_catchment": "Out-of-Catchment",
+      "n": 12314,
+      "continuity_pct": 28.76,
+      "bp_pct": 58.26,
+      "cost_median": 1635,
+      "cost_mean": 1794,
+      "age_mean": 70.5
+    }
+  ],
+  "group3_summary": [
+    {
+      "ooc_group": "In-Catchment",
+      "n": 29974,
+      "continuity_pct": 30.05,
+      "bp_pct": 58.88,
+      "cost_median": 1619,
+      "cost_mean": 1787,
+      "age_mean": 71.4
+    },
+    {
+      "ooc_group": "OOC-Bangkok",
+      "n": 8980,
+      "continuity_pct": 29.54,
+      "bp_pct": 57.98,
+      "cost_median": 1685,
+      "cost_mean": 1822,
+      "age_mean": 70.9
+    },
+    {
+      "ooc_group": "OOC-Outside",
+      "n": 3334,
+      "continuity_pct": 26.63,
+      "bp_pct": 59,
+      "cost_median": 1515,
+      "cost_mean": 1719,
+      "age_mean": 69.6
+    }
+  ],
+  "center_summary": [
+    {
+      "hcode": "ศบส.1",
+      "n": 295,
+      "ooc_pct": 52.2,
+      "continuity_pct": 11.53,
+      "bp_pct": 62.5,
+      "cost_median": 1270
+    },
+    {
+      "hcode": "ศบส.10",
+      "n": 45,
+      "ooc_pct": 40,
+      "continuity_pct": 2.22,
+      "bp_pct": 37.78,
+      "cost_median": 2286
+    },
+    {
+      "hcode": "ศบส.11",
+      "n": 346,
+      "ooc_pct": 30.35,
+      "continuity_pct": 18.5,
+      "bp_pct": 66.77,
+      "cost_median": 1128
+    },
+    {
+      "hcode": "ศบส.12",
+      "n": 151,
+      "ooc_pct": 16.56,
+      "continuity_pct": 26.49,
+      "bp_pct": 58.04,
+      "cost_median": 1940
+    },
+    {
+      "hcode": "ศบส.13",
+      "n": 104,
+      "ooc_pct": 40.38,
+      "continuity_pct": 5.77,
+      "bp_pct": 73.63,
+      "cost_median": 2341
+    },
+    {
+      "hcode": "ศบส.14",
+      "n": 475,
+      "ooc_pct": 50.11,
+      "continuity_pct": 13.05,
+      "bp_pct": 50.84,
+      "cost_median": 2080
+    },
+    {
+      "hcode": "ศบส.15",
+      "n": 351,
+      "ooc_pct": 73.5,
+      "continuity_pct": 45.58,
+      "bp_pct": 45,
+      "cost_median": 1720
+    },
+    {
+      "hcode": "ศบส.16",
+      "n": 613,
+      "ooc_pct": 19.9,
+      "continuity_pct": 28.55,
+      "bp_pct": 49.82,
+      "cost_median": 1686
+    },
+    {
+      "hcode": "ศบส.17",
+      "n": 258,
+      "ooc_pct": 27.91,
+      "continuity_pct": 49.22,
+      "bp_pct": 39.13,
+      "cost_median": 955
+    },
+    {
+      "hcode": "ศบส.18",
+      "n": 374,
+      "ooc_pct": 21.93,
+      "continuity_pct": 16.31,
+      "bp_pct": 59.03,
+      "cost_median": 2208
+    },
+    {
+      "hcode": "ศบส.19",
+      "n": 1339,
+      "ooc_pct": 12.25,
+      "continuity_pct": 27.04,
+      "bp_pct": 48.58,
+      "cost_median": 1532
+    },
+    {
+      "hcode": "ศบส.2",
+      "n": 191,
+      "ooc_pct": 33.51,
+      "continuity_pct": 40.31,
+      "bp_pct": 45.27,
+      "cost_median": 1286
+    },
+    {
+      "hcode": "ศบส.20",
+      "n": 110,
+      "ooc_pct": 99.09,
+      "continuity_pct": 21.82,
+      "bp_pct": 62.89,
+      "cost_median": 1212
+    },
+    {
+      "hcode": "ศบส.21",
+      "n": 130,
+      "ooc_pct": 71.54,
+      "continuity_pct": 10.77,
+      "bp_pct": 50.85,
+      "cost_median": 1519
+    },
+    {
+      "hcode": "ศบส.22",
+      "n": 234,
+      "ooc_pct": 72.22,
+      "continuity_pct": 38.03,
+      "bp_pct": 63.9,
+      "cost_median": 1810
+    },
+    {
+      "hcode": "ศบส.23",
+      "n": 231,
+      "ooc_pct": 36.36,
+      "continuity_pct": 22.94,
+      "bp_pct": 46.82,
+      "cost_median": 1874
+    },
+    {
+      "hcode": "ศบส.24",
+      "n": 482,
+      "ooc_pct": 42.32,
+      "continuity_pct": 14.52,
+      "bp_pct": 77.75,
+      "cost_median": 2950
+    },
+    {
+      "hcode": "ศบส.25",
+      "n": 806,
+      "ooc_pct": 21.34,
+      "continuity_pct": 12.03,
+      "bp_pct": 72.16,
+      "cost_median": 1962
+    },
+    {
+      "hcode": "ศบส.26",
+      "n": 343,
+      "ooc_pct": 47.52,
+      "continuity_pct": 18.66,
+      "bp_pct": 60.93,
+      "cost_median": 2605
+    },
+    {
+      "hcode": "ศบส.27",
+      "n": 1308,
+      "ooc_pct": 33.03,
+      "continuity_pct": 56.96,
+      "bp_pct": 62.91,
+      "cost_median": 1838
+    },
+    {
+      "hcode": "ศบส.28",
+      "n": 361,
+      "ooc_pct": 30.47,
+      "continuity_pct": 23.82,
+      "bp_pct": 50.84,
+      "cost_median": 1894
+    },
+    {
+      "hcode": "ศบส.29",
+      "n": 2137,
+      "ooc_pct": 33.13,
+      "continuity_pct": 58.21,
+      "bp_pct": 57.18,
+      "cost_median": 1440
+    },
+    {
+      "hcode": "ศบส.3",
+      "n": 417,
+      "ooc_pct": 14.87,
+      "continuity_pct": 21.1,
+      "bp_pct": 58.16,
+      "cost_median": 2060
+    },
+    {
+      "hcode": "ศบส.30",
+      "n": 248,
+      "ooc_pct": 43.15,
+      "continuity_pct": 20.97,
+      "bp_pct": 68.94,
+      "cost_median": 1348
+    },
+    {
+      "hcode": "ศบส.31",
+      "n": 1218,
+      "ooc_pct": 17.08,
+      "continuity_pct": 16.17,
+      "bp_pct": 54.02,
+      "cost_median": 1966
+    },
+    {
+      "hcode": "ศบส.32",
+      "n": 124,
+      "ooc_pct": 100,
+      "continuity_pct": 39.52,
+      "bp_pct": 65.74,
+      "cost_median": 2032
+    },
+    {
+      "hcode": "ศบส.33",
+      "n": 1072,
+      "ooc_pct": 30.13,
+      "continuity_pct": 56.25,
+      "bp_pct": 55.93,
+      "cost_median": 1464
+    },
+    {
+      "hcode": "ศบส.34",
+      "n": 639,
+      "ooc_pct": 18.78,
+      "continuity_pct": 30.99,
+      "bp_pct": 42.11,
+      "cost_median": 1685
+    },
+    {
+      "hcode": "ศบส.35",
+      "n": 764,
+      "ooc_pct": 12.3,
+      "continuity_pct": 34.42,
+      "bp_pct": 64.4,
+      "cost_median": 1071
+    },
+    {
+      "hcode": "ศบส.36",
+      "n": 673,
+      "ooc_pct": 32.54,
+      "continuity_pct": 21.1,
+      "bp_pct": 64.15,
+      "cost_median": 1998
+    },
+    {
+      "hcode": "ศบส.37",
+      "n": 144,
+      "ooc_pct": 47.22,
+      "continuity_pct": 15.28,
+      "bp_pct": 49.61,
+      "cost_median": 1164
+    },
+    {
+      "hcode": "ศบส.38",
+      "n": 780,
+      "ooc_pct": 25.9,
+      "continuity_pct": 35.9,
+      "bp_pct": 64.4,
+      "cost_median": 1887
+    },
+    {
+      "hcode": "ศบส.39",
+      "n": 808,
+      "ooc_pct": 35.02,
+      "continuity_pct": 42.95,
+      "bp_pct": 57.32,
+      "cost_median": 1753
+    },
+    {
+      "hcode": "ศบส.4",
+      "n": 1018,
+      "ooc_pct": 15.42,
+      "continuity_pct": 28.98,
+      "bp_pct": 70.16,
+      "cost_median": 1649
+    },
+    {
+      "hcode": "ศบส.40",
+      "n": 1079,
+      "ooc_pct": 38.46,
+      "continuity_pct": 11.86,
+      "bp_pct": 71.39,
+      "cost_median": 2888
+    },
+    {
+      "hcode": "ศบส.41",
+      "n": 72,
+      "ooc_pct": 38.89,
+      "continuity_pct": 37.5,
+      "bp_pct": 44.12,
+      "cost_median": 1524
+    },
+    {
+      "hcode": "ศบส.42",
+      "n": 1668,
+      "ooc_pct": 21.7,
+      "continuity_pct": 22.24,
+      "bp_pct": 56.25,
+      "cost_median": 1220
+    },
+    {
+      "hcode": "ศบส.43",
+      "n": 875,
+      "ooc_pct": 38.29,
+      "continuity_pct": 18.4,
+      "bp_pct": 56.18,
+      "cost_median": 1832
+    },
+    {
+      "hcode": "ศบส.44",
+      "n": 882,
+      "ooc_pct": 100,
+      "continuity_pct": 27.66,
+      "bp_pct": 49.38,
+      "cost_median": 1388
+    },
+    {
+      "hcode": "ศบส.45",
+      "n": 892,
+      "ooc_pct": 16.82,
+      "continuity_pct": 49.78,
+      "bp_pct": 41.85,
+      "cost_median": 1127
+    },
+    {
+      "hcode": "ศบส.46",
+      "n": 491,
+      "ooc_pct": 13.24,
+      "continuity_pct": 24.85,
+      "bp_pct": 58.64,
+      "cost_median": 1270
+    },
+    {
+      "hcode": "ศบส.47",
+      "n": 342,
+      "ooc_pct": 26.32,
+      "continuity_pct": 25.15,
+      "bp_pct": 48.77,
+      "cost_median": 1731
+    },
+    {
+      "hcode": "ศบส.48",
+      "n": 199,
+      "ooc_pct": 59.3,
+      "continuity_pct": 24.62,
+      "bp_pct": 55.25,
+      "cost_median": 1650
+    },
+    {
+      "hcode": "ศบส.49",
+      "n": 739,
+      "ooc_pct": 13.8,
+      "continuity_pct": 23.27,
+      "bp_pct": 66.47,
+      "cost_median": 1936
+    },
+    {
+      "hcode": "ศบส.5",
+      "n": 444,
+      "ooc_pct": 52.93,
+      "continuity_pct": 5.86,
+      "bp_pct": 83.7,
+      "cost_median": 2823
+    },
+    {
+      "hcode": "ศบส.50",
+      "n": 724,
+      "ooc_pct": 27.07,
+      "continuity_pct": 53.04,
+      "bp_pct": 60.2,
+      "cost_median": 1200
+    },
+    {
+      "hcode": "ศบส.51",
+      "n": 168,
+      "ooc_pct": 16.67,
+      "continuity_pct": 8.33,
+      "bp_pct": 56.95,
+      "cost_median": 1612
+    },
+    {
+      "hcode": "ศบส.52",
+      "n": 816,
+      "ooc_pct": 13.85,
+      "continuity_pct": 21.08,
+      "bp_pct": 73.99,
+      "cost_median": 2458
+    },
+    {
+      "hcode": "ศบส.53",
+      "n": 574,
+      "ooc_pct": 16.38,
+      "continuity_pct": 19.51,
+      "bp_pct": 56.86,
+      "cost_median": 1788
+    },
+    {
+      "hcode": "ศบส.54",
+      "n": 950,
+      "ooc_pct": 17.89,
+      "continuity_pct": 20.21,
+      "bp_pct": 52.42,
+      "cost_median": 2082
+    },
+    {
+      "hcode": "ศบส.55",
+      "n": 320,
+      "ooc_pct": 19.06,
+      "continuity_pct": 27.19,
+      "bp_pct": 60.87,
+      "cost_median": 1586
+    },
+    {
+      "hcode": "ศบส.56",
+      "n": 1163,
+      "ooc_pct": 33.28,
+      "continuity_pct": 23.65,
+      "bp_pct": 64.15,
+      "cost_median": 1777
+    },
+    {
+      "hcode": "ศบส.57",
+      "n": 758,
+      "ooc_pct": 22.56,
+      "continuity_pct": 41.95,
+      "bp_pct": 55.25,
+      "cost_median": 1220
+    },
+    {
+      "hcode": "ศบส.58",
+      "n": 723,
+      "ooc_pct": 36.93,
+      "continuity_pct": 27.8,
+      "bp_pct": 58.88,
+      "cost_median": 940
+    },
+    {
+      "hcode": "ศบส.59",
+      "n": 1275,
+      "ooc_pct": 24,
+      "continuity_pct": 17.41,
+      "bp_pct": 63.33,
+      "cost_median": 1570
+    },
+    {
+      "hcode": "ศบส.6",
+      "n": 463,
+      "ooc_pct": 33.69,
+      "continuity_pct": 37.15,
+      "bp_pct": 58.93,
+      "cost_median": 1868
+    },
+    {
+      "hcode": "ศบส.60",
+      "n": 706,
+      "ooc_pct": 15.58,
+      "continuity_pct": 52.83,
+      "bp_pct": 70.36,
+      "cost_median": 1362
+    },
+    {
+      "hcode": "ศบส.61",
+      "n": 1119,
+      "ooc_pct": 9.65,
+      "continuity_pct": 19.75,
+      "bp_pct": 68.06,
+      "cost_median": 1345
+    },
+    {
+      "hcode": "ศบส.62",
+      "n": 148,
+      "ooc_pct": 50.68,
+      "continuity_pct": 12.16,
+      "bp_pct": 57.34,
+      "cost_median": 1936
+    },
+    {
+      "hcode": "ศบส.63",
+      "n": 567,
+      "ooc_pct": 17.28,
+      "continuity_pct": 28.04,
+      "bp_pct": 57.06,
+      "cost_median": 1318
+    },
+    {
+      "hcode": "ศบส.64",
+      "n": 1254,
+      "ooc_pct": 15.07,
+      "continuity_pct": 37.32,
+      "bp_pct": 56.18,
+      "cost_median": 1235
+    },
+    {
+      "hcode": "ศบส.65",
+      "n": 1054,
+      "ooc_pct": 26.28,
+      "continuity_pct": 27.99,
+      "bp_pct": 53.39,
+      "cost_median": 1745
+    },
+    {
+      "hcode": "ศบส.66",
+      "n": 271,
+      "ooc_pct": 34.32,
+      "continuity_pct": 10.33,
+      "bp_pct": 71.12,
+      "cost_median": 1837
+    },
+    {
+      "hcode": "ศบส.67",
+      "n": 763,
+      "ooc_pct": 21.89,
+      "continuity_pct": 14.15,
+      "bp_pct": 59.6,
+      "cost_median": 2410
+    },
+    {
+      "hcode": "ศบส.68",
+      "n": 321,
+      "ooc_pct": 19.31,
+      "continuity_pct": 46.42,
+      "bp_pct": 34.35,
+      "cost_median": 906
+    },
+    {
+      "hcode": "ศบส.69",
+      "n": 728,
+      "ooc_pct": 16.35,
+      "continuity_pct": 38.32,
+      "bp_pct": 47.85,
+      "cost_median": 1088
+    },
+    {
+      "hcode": "ศบส.7",
+      "n": 446,
+      "ooc_pct": 23.77,
+      "continuity_pct": 19.73,
+      "bp_pct": 50.12,
+      "cost_median": 2068
+    },
+    {
+      "hcode": "ศบส.8",
+      "n": 583,
+      "ooc_pct": 96.57,
+      "continuity_pct": 29.16,
+      "bp_pct": 61.17,
+      "cost_median": 2031
+    },
+    {
+      "hcode": "ศบส.9",
+      "n": 122,
+      "ooc_pct": 50,
+      "continuity_pct": 17.21,
+      "bp_pct": 49.57,
+      "cost_median": 2013
+    }
+  ],
+  "regression": {
+    "continuity_unadj": [
+      {
+        "variable": "(Intercept)",
+        "estimate": 0.4295,
+        "ci_lower": 0.419,
+        "ci_upper": 0.4402,
+        "p_value": 0,
+        "sig": "***",
+        "_row": "(Intercept)"
+      },
+      {
+        "variable": "out_of_catchmentOut-of-Catchment",
+        "estimate": 0.9397,
+        "ci_lower": 0.8973,
+        "ci_upper": 0.9841,
+        "p_value": 0.2188,
+        "sig": "",
+        "_row": "out_of_catchmentOut-of-Catchment"
+      }
+    ],
+    "continuity_adj": [
+      {
+        "variable": "(Intercept)",
+        "estimate": 0.2467,
+        "ci_lower": 0.1988,
+        "ci_upper": 0.3061,
+        "p_value": 0,
+        "sig": "***",
+        "_row": "(Intercept)"
+      },
+      {
+        "variable": "out_of_catchmentOut-of-Catchment",
+        "estimate": 0.9515,
+        "ci_lower": 0.9081,
+        "ci_upper": 0.9968,
+        "p_value": 0.3307,
+        "sig": "",
+        "_row": "out_of_catchmentOut-of-Catchment"
+      },
+      {
+        "variable": "age",
+        "estimate": 1.0082,
+        "ci_lower": 1.0053,
+        "ci_upper": 1.0111,
+        "p_value": 0.0016,
+        "sig": "**",
+        "_row": "age"
+      },
+      {
+        "variable": "sex_bin1_Male",
+        "estimate": 0.9965,
+        "ci_lower": 0.952,
+        "ci_upper": 1.043,
+        "p_value": 0.8966,
+        "sig": "",
+        "_row": "sex_bin1_Male"
+      },
+      {
+        "variable": "edu_group2_Secondary",
+        "estimate": 0.9357,
+        "ci_lower": 0.8277,
+        "ci_upper": 1.0562,
+        "p_value": 0.3054,
+        "sig": "",
+        "_row": "edu_group2_Secondary"
+      },
+      {
+        "variable": "edu_group3_Bachelor_plus",
+        "estimate": 0.7308,
+        "ci_lower": 0.629,
+        "ci_upper": 0.8465,
+        "p_value": 0.0056,
+        "sig": "**",
+        "_row": "edu_group3_Bachelor_plus"
+      },
+      {
+        "variable": "edu_group9_Not_Specified",
+        "estimate": 0.9396,
+        "ci_lower": 0.8924,
+        "ci_upper": 0.9894,
+        "p_value": 0.6228,
+        "sig": "",
+        "_row": "edu_group9_Not_Specified"
+      },
+      {
+        "variable": "marital_group2_Single",
+        "estimate": 1.0431,
+        "ci_lower": 0.9952,
+        "ci_upper": 1.0932,
+        "p_value": 0.3842,
+        "sig": "",
+        "_row": "marital_group2_Single"
+      },
+      {
+        "variable": "marital_group3_Formerly_Married",
+        "estimate": 1.1101,
+        "ci_lower": 1.0432,
+        "ci_upper": 1.181,
+        "p_value": 0.0874,
+        "sig": "",
+        "_row": "marital_group3_Formerly_Married"
+      },
+      {
+        "variable": "marital_group9_Other_or_NS",
+        "estimate": 1.1783,
+        "ci_lower": 0.8819,
+        "ci_upper": 1.5603,
+        "p_value": 0.4853,
+        "sig": "",
+        "_row": "marital_group9_Other_or_NS"
+      },
+      {
+        "variable": "occ_group52_รับจ้าง",
+        "estimate": 1.0648,
+        "ci_lower": 1.001,
+        "ci_upper": 1.1325,
+        "p_value": 0.3687,
+        "sig": "",
+        "_row": "occ_group52_รับจ้าง"
+      },
+      {
+        "variable": "occ_group53_ค้าขาย/ธุรกิจ",
+        "estimate": 1.0745,
+        "ci_lower": 0.9921,
+        "ci_upper": 1.1629,
+        "p_value": 0.3186,
+        "sig": "",
+        "_row": "occ_group53_ค้าขาย/ธุรกิจ"
+      },
+      {
+        "variable": "occ_group54_ภาครัฐ/ราชการ",
+        "estimate": 0.9205,
+        "ci_lower": 0.7432,
+        "ci_upper": 1.1343,
+        "p_value": 0.3584,
+        "sig": "",
+        "_row": "occ_group54_ภาครัฐ/ราชการ"
+      },
+      {
+        "variable": "occ_group55_อื่นๆ/ไม่ระบุ",
+        "estimate": 1.0192,
+        "ci_lower": 0.9573,
+        "ci_upper": 1.0847,
+        "p_value": 0.8052,
+        "sig": "",
+        "_row": "occ_group55_อื่นๆ/ไม่ระบุ"
+      },
+      {
+        "variable": "inscl_group2_CSMBS",
+        "estimate": 1.2331,
+        "ci_lower": 1.0908,
+        "ci_upper": 1.3923,
+        "p_value": 0.0124,
+        "sig": "*",
+        "_row": "inscl_group2_CSMBS"
+      },
+      {
+        "variable": "inscl_group3_SSS",
+        "estimate": 1.4531,
+        "ci_lower": 1.0056,
+        "ci_upper": 2.0759,
+        "p_value": 0.112,
+        "sig": "",
+        "_row": "inscl_group3_SSS"
+      },
+      {
+        "variable": "inscl_group9_Other_or_NS",
+        "estimate": 0.7511,
+        "ci_lower": 0.6492,
+        "ci_upper": 0.8661,
+        "p_value": 0.0092,
+        "sig": "**",
+        "_row": "inscl_group9_Other_or_NS"
+      },
+      {
+        "variable": "staff_per_1000_z",
+        "estimate": 0.865,
+        "ci_lower": 0.8464,
+        "ci_upper": 0.884,
+        "p_value": 0.1167,
+        "sig": "",
+        "_row": "staff_per_1000_z"
+      },
+      {
+        "variable": "comorbidity_count",
+        "estimate": 0.8614,
+        "ci_lower": 0.82,
+        "ci_upper": 0.9047,
+        "p_value": 0.379,
+        "sig": "",
+        "_row": "comorbidity_count"
+      }
+    ],
+    "bp_unadj": [
+      {
+        "variable": "(Intercept)",
+        "estimate": 1.4317,
+        "ci_lower": 1.3973,
+        "ci_upper": 1.467,
+        "p_value": 0,
+        "sig": "***",
+        "_row": "(Intercept)"
+      },
+      {
+        "variable": "out_of_catchmentOut-of-Catchment",
+        "estimate": 0.975,
+        "ci_lower": 0.932,
+        "ci_upper": 1.02,
+        "p_value": 0.5899,
+        "sig": "",
+        "_row": "out_of_catchmentOut-of-Catchment"
+      }
+    ],
+    "bp_adj": [
+      {
+        "variable": "(Intercept)",
+        "estimate": 2.6433,
+        "ci_lower": 2.119,
+        "ci_upper": 3.2975,
+        "p_value": 0,
+        "sig": "***",
+        "_row": "(Intercept)"
+      },
+      {
+        "variable": "out_of_catchmentOut-of-Catchment",
+        "estimate": 0.9662,
+        "ci_lower": 0.9233,
+        "ci_upper": 1.0111,
+        "p_value": 0.4724,
+        "sig": "",
+        "_row": "out_of_catchmentOut-of-Catchment"
+      },
+      {
+        "variable": "continuity_flag1",
+        "estimate": 1.1681,
+        "ci_lower": 1.1168,
+        "ci_upper": 1.2219,
+        "p_value": 0.0003,
+        "sig": "***",
+        "_row": "continuity_flag1"
+      },
+      {
+        "variable": "age",
+        "estimate": 0.9906,
+        "ci_lower": 0.9876,
+        "ci_upper": 0.9935,
+        "p_value": 0,
+        "sig": "***",
+        "_row": "age"
+      },
+      {
+        "variable": "sex_bin1_Male",
+        "estimate": 1.0223,
+        "ci_lower": 0.9778,
+        "ci_upper": 1.0688,
+        "p_value": 0.3474,
+        "sig": "",
+        "_row": "sex_bin1_Male"
+      },
+      {
+        "variable": "edu_group2_Secondary",
+        "estimate": 0.9043,
+        "ci_lower": 0.8039,
+        "ci_upper": 1.0175,
+        "p_value": 0.1625,
+        "sig": "",
+        "_row": "edu_group2_Secondary"
+      },
+      {
+        "variable": "edu_group3_Bachelor_plus",
+        "estimate": 1.0584,
+        "ci_lower": 0.9232,
+        "ci_upper": 1.2146,
+        "p_value": 0.5003,
+        "sig": "",
+        "_row": "edu_group3_Bachelor_plus"
+      },
+      {
+        "variable": "edu_group9_Not_Specified",
+        "estimate": 1.0076,
+        "ci_lower": 0.9574,
+        "ci_upper": 1.0604,
+        "p_value": 0.8906,
+        "sig": "",
+        "_row": "edu_group9_Not_Specified"
+      },
+      {
+        "variable": "marital_group2_Single",
+        "estimate": 0.9992,
+        "ci_lower": 0.9545,
+        "ci_upper": 1.046,
+        "p_value": 0.9791,
+        "sig": "",
+        "_row": "marital_group2_Single"
+      },
+      {
+        "variable": "marital_group3_Formerly_Married",
+        "estimate": 1.0381,
+        "ci_lower": 0.9756,
+        "ci_upper": 1.1049,
+        "p_value": 0.3803,
+        "sig": "",
+        "_row": "marital_group3_Formerly_Married"
+      },
+      {
+        "variable": "marital_group9_Other_or_NS",
+        "estimate": 0.8525,
+        "ci_lower": 0.6352,
+        "ci_upper": 1.1472,
+        "p_value": 0.2356,
+        "sig": "",
+        "_row": "marital_group9_Other_or_NS"
+      },
+      {
+        "variable": "occ_group52_รับจ้าง",
+        "estimate": 0.967,
+        "ci_lower": 0.9114,
+        "ci_upper": 1.026,
+        "p_value": 0.2687,
+        "sig": "",
+        "_row": "occ_group52_รับจ้าง"
+      },
+      {
+        "variable": "occ_group53_ค้าขาย/ธุรกิจ",
+        "estimate": 1.0493,
+        "ci_lower": 0.9716,
+        "ci_upper": 1.1337,
+        "p_value": 0.2634,
+        "sig": "",
+        "_row": "occ_group53_ค้าขาย/ธุรกิจ"
+      },
+      {
+        "variable": "occ_group54_ภาครัฐ/ราชการ",
+        "estimate": 1.2243,
+        "ci_lower": 0.9995,
+        "ci_upper": 1.504,
+        "p_value": 0.0353,
+        "sig": "*",
+        "_row": "occ_group54_ภาครัฐ/ราชการ"
+      },
+      {
+        "variable": "occ_group55_อื่นๆ/ไม่ระบุ",
+        "estimate": 0.9814,
+        "ci_lower": 0.923,
+        "ci_upper": 1.0437,
+        "p_value": 0.7068,
+        "sig": "",
+        "_row": "occ_group55_อื่นๆ/ไม่ระบุ"
+      },
+      {
+        "variable": "inscl_group2_CSMBS",
+        "estimate": 0.9346,
+        "ci_lower": 0.8274,
+        "ci_upper": 1.0563,
+        "p_value": 0.3363,
+        "sig": "",
+        "_row": "inscl_group2_CSMBS"
+      },
+      {
+        "variable": "inscl_group3_SSS",
+        "estimate": 1.2577,
+        "ci_lower": 0.869,
+        "ci_upper": 1.8465,
+        "p_value": 0.1206,
+        "sig": "",
+        "_row": "inscl_group3_SSS"
+      },
+      {
+        "variable": "inscl_group9_Other_or_NS",
+        "estimate": 0.8562,
+        "ci_lower": 0.7522,
+        "ci_upper": 0.9749,
+        "p_value": 0.2193,
+        "sig": "",
+        "_row": "inscl_group9_Other_or_NS"
+      },
+      {
+        "variable": "staff_per_1000_z",
+        "estimate": 1.0358,
+        "ci_lower": 1.0147,
+        "ci_upper": 1.0573,
+        "p_value": 0.2966,
+        "sig": "",
+        "_row": "staff_per_1000_z"
+      },
+      {
+        "variable": "comorbidity_count",
+        "estimate": 1.0171,
+        "ci_lower": 0.9694,
+        "ci_upper": 1.0672,
+        "p_value": 0.6111,
+        "sig": "",
+        "_row": "comorbidity_count"
+      }
+    ],
+    "cost_adj": [
+      {
+        "variable": "(Intercept)",
+        "estimate": 5.7709,
+        "ci_lower": 5.7042,
+        "ci_upper": 5.8377,
+        "p_value": 0,
+        "sig": "***",
+        "pct_change": 31982.63,
+        "_row": "(Intercept)"
+      },
+      {
+        "variable": "out_of_catchmentOut-of-Catchment",
+        "estimate": -0.0219,
+        "ci_lower": -0.0361,
+        "ci_upper": -0.0077,
+        "p_value": 0.2487,
+        "sig": "",
+        "pct_change": -2.17,
+        "_row": "out_of_catchmentOut-of-Catchment"
+      },
+      {
+        "variable": "age",
+        "estimate": -0.0015,
+        "ci_lower": -0.0024,
+        "ci_upper": -0.0006,
+        "p_value": 0.1328,
+        "sig": "",
+        "pct_change": -0.15,
+        "_row": "age"
+      },
+      {
+        "variable": "sex_bin1_Male",
+        "estimate": -0.0292,
+        "ci_lower": -0.0432,
+        "ci_upper": -0.0153,
+        "p_value": 0.0009,
+        "sig": "***",
+        "pct_change": -2.88,
+        "_row": "sex_bin1_Male"
+      },
+      {
+        "variable": "edu_group2_Secondary",
+        "estimate": -0.0172,
+        "ci_lower": -0.0545,
+        "ci_upper": 0.0202,
+        "p_value": 0.4766,
+        "sig": "",
+        "pct_change": -1.71,
+        "_row": "edu_group2_Secondary"
+      },
+      {
+        "variable": "edu_group3_Bachelor_plus",
+        "estimate": -0.1266,
+        "ci_lower": -0.1698,
+        "ci_upper": -0.0833,
+        "p_value": 0.0416,
+        "sig": "*",
+        "pct_change": -11.89,
+        "_row": "edu_group3_Bachelor_plus"
+      },
+      {
+        "variable": "edu_group9_Not_Specified",
+        "estimate": -0.0256,
+        "ci_lower": -0.0415,
+        "ci_upper": -0.0096,
+        "p_value": 0.3144,
+        "sig": "",
+        "pct_change": -2.53,
+        "_row": "edu_group9_Not_Specified"
+      },
+      {
+        "variable": "marital_group2_Single",
+        "estimate": -0.0034,
+        "ci_lower": -0.0177,
+        "ci_upper": 0.011,
+        "p_value": 0.734,
+        "sig": "",
+        "pct_change": -0.34,
+        "_row": "marital_group2_Single"
+      },
+      {
+        "variable": "marital_group3_Formerly_Married",
+        "estimate": 0.0241,
+        "ci_lower": 0.0049,
+        "ci_upper": 0.0434,
+        "p_value": 0.1031,
+        "sig": "",
+        "pct_change": 2.44,
+        "_row": "marital_group3_Formerly_Married"
+      },
+      {
+        "variable": "marital_group9_Other_or_NS",
+        "estimate": -0.1073,
+        "ci_lower": -0.1968,
+        "ci_upper": -0.0178,
+        "p_value": 0.2957,
+        "sig": "",
+        "pct_change": -10.17,
+        "_row": "marital_group9_Other_or_NS"
+      },
+      {
+        "variable": "occ_group52_รับจ้าง",
+        "estimate": -0.0184,
+        "ci_lower": -0.0373,
+        "ci_upper": 0.0005,
+        "p_value": 0.2218,
+        "sig": "",
+        "pct_change": -1.82,
+        "_row": "occ_group52_รับจ้าง"
+      },
+      {
+        "variable": "occ_group53_ค้าขาย/ธุรกิจ",
+        "estimate": -0.0244,
+        "ci_lower": -0.0487,
+        "ci_upper": -0,
+        "p_value": 0.1239,
+        "sig": "",
+        "pct_change": -2.41,
+        "_row": "occ_group53_ค้าขาย/ธุรกิจ"
+      },
+      {
+        "variable": "occ_group54_ภาครัฐ/ราชการ",
+        "estimate": -0.0192,
+        "ci_lower": -0.0826,
+        "ci_upper": 0.0443,
+        "p_value": 0.667,
+        "sig": "",
+        "pct_change": -1.9,
+        "_row": "occ_group54_ภาครัฐ/ราชการ"
+      },
+      {
+        "variable": "occ_group55_อื่นๆ/ไม่ระบุ",
+        "estimate": -0.032,
+        "ci_lower": -0.0512,
+        "ci_upper": -0.0129,
+        "p_value": 0.164,
+        "sig": "",
+        "pct_change": -3.15,
+        "_row": "occ_group55_อื่นๆ/ไม่ระบุ"
+      },
+      {
+        "variable": "inscl_group2_CSMBS",
+        "estimate": 0.1593,
+        "ci_lower": 0.1209,
+        "ci_upper": 0.1978,
+        "p_value": 0,
+        "sig": "***",
+        "pct_change": 17.27,
+        "_row": "inscl_group2_CSMBS"
+      },
+      {
+        "variable": "inscl_group3_SSS",
+        "estimate": 0.1567,
+        "ci_lower": 0.0402,
+        "ci_upper": 0.2731,
+        "p_value": 0.0055,
+        "sig": "**",
+        "pct_change": 16.96,
+        "_row": "inscl_group3_SSS"
+      },
+      {
+        "variable": "inscl_group9_Other_or_NS",
+        "estimate": -0.3532,
+        "ci_lower": -0.3947,
+        "ci_upper": -0.3116,
+        "p_value": 0.0405,
+        "sig": "*",
+        "pct_change": -29.76,
+        "_row": "inscl_group9_Other_or_NS"
+      },
+      {
+        "variable": "staff_per_1000_z",
+        "estimate": -0.0701,
+        "ci_lower": -0.0766,
+        "ci_upper": -0.0636,
+        "p_value": 0.0001,
+        "sig": "***",
+        "pct_change": -6.77,
+        "_row": "staff_per_1000_z"
+      },
+      {
+        "variable": "comorbidity_count",
+        "estimate": 0.1301,
+        "ci_lower": 0.1155,
+        "ci_upper": 0.1448,
+        "p_value": 0,
+        "sig": "***",
+        "pct_change": 13.89,
+        "_row": "comorbidity_count"
+      },
+      {
+        "variable": "n_visits",
+        "estimate": 0.3882,
+        "ci_lower": 0.3852,
+        "ci_upper": 0.3912,
+        "p_value": 0,
+        "sig": "***",
+        "pct_change": 47.43,
+        "_row": "n_visits"
+      }
+    ]
+  }
+}
