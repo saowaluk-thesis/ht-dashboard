@@ -6,6 +6,17 @@
 <title>Dashboard ผลกระทบประชากรแฝง | ศูนย์บริการสาธารณสุข กทม.</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+.leaflet-container { background: #0d1117 !important; }
+.leaflet-tile { filter: brightness(0.35) saturate(0.5) hue-rotate(200deg); }
+.hc-popup { font-family:'Sarabun',sans-serif; font-size:13px; min-width:200px; }
+.hc-popup h4 { margin:0 0 6px; font-size:14px; color:#2dd4bf; }
+.hc-popup table { width:100%; border-collapse:collapse; }
+.hc-popup td { padding:3px 0; color:#555; }
+.hc-popup td:last-child { text-align:right; font-weight:600; color:#222; }
+</style>
 <style>
 :root {
   --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;
@@ -235,10 +246,8 @@ canvas{max-height:240px;}
           <div class="card-sub" id="dv-map-sub">—</div>
         </div>
         <div class="card-body" style="padding:12px;">
-          <div style="background:var(--bg3);border-radius:8px;overflow:hidden;height:180px;">
-            <svg id="dv-map" width="100%" height="180" viewBox="0 0 600 180"></svg>
-          </div>
-          <div style="margin-top:8px;font-size:11px;color:var(--text2);">⬤ highlight = ศบส. ในเขตที่เลือก | จาง = ศบส. อื่น</div>
+          <div id="dv-leaflet-map" style="height:200px;width:100%;border-radius:8px;"></div>
+          <div style="margin-top:8px;font-size:11px;color:var(--text2);">⬤ สี = ศบส. ในเขตที่เลือก | จาง = ศบส. อื่น | คลิกจุดเพื่อดูข้อมูล</div>
         </div>
       </div>
     </div>
@@ -316,9 +325,9 @@ canvas{max-height:240px;}
       </div>
     </div>
     <div class="card-body" style="padding:16px;">
-      <div class="map-container" style="height:280px;">
-        <svg id="bkk-map" width="100%" height="280" viewBox="0 0 600 280"></svg>
-        <div class="map-legend" id="map-legend">
+      <div class="map-container" style="height:320px;position:relative;">
+        <div id="leaflet-map" style="height:320px;width:100%;border-radius:8px;"></div>
+        <div class="map-legend" id="map-legend" style="z-index:1000;">
           <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-family:var(--mono)" id="legend-title">% OOC</div>
           <div class="legend-row"><div class="legend-dot" style="background:#1a3a5f"></div>&lt; 20%</div>
           <div class="legend-row"><div class="legend-dot" style="background:#1f6aa5"></div>20–35%</div>
@@ -529,8 +538,13 @@ function renderAll(d) {
   document.getElementById('r2-val').textContent = k.r2_cost;
 }
 
-// ════════ MAP ════════
+// ════════ MAP (Leaflet) ════════
 let currentMapMode = 'ooc';
+let leafletMap = null;
+let leafletMarkers = [];
+let dvLeafletMap = null;
+let dvMarkers = [];
+
 function switchMap(mode, el) {
   currentMapMode = mode;
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -553,30 +567,101 @@ function getColor(v, mode) {
   }
 }
 
+function makeCircleMarker(c, val, color, opacity, radius) {
+  const displayHcode = c.display_hcode || ('ศบส.'+parseInt(c.hcode));
+  const popupHtml = `<div class="hc-popup">
+    <h4>${displayHcode} — ${c.hc_name||c.district||''}</h4>
+    <table>
+      <tr><td>เขต</td><td>${c.district||'—'}</td></tr>
+      <tr><td>% OOC</td><td style="color:#f59e0b">${parseFloat(c.ooc_pct).toFixed(1)}%</td></tr>
+      <tr><td>ความสม่ำเสมอ</td><td style="color:#2dd4bf">${parseFloat(c.continuity_pct).toFixed(1)}%</td></tr>
+      <tr><td>ควบคุม BP</td><td style="color:#3fb950">${parseFloat(c.bp_pct).toFixed(1)}%</td></tr>
+      <tr><td>ค่าใช้จ่าย (มัธยฐาน)</td><td>${parseInt(c.cost_median).toLocaleString()} ฿</td></tr>
+    </table>
+  </div>`;
+  return L.circleMarker([c.lat, c.lon], {
+    radius: radius,
+    fillColor: color,
+    color: color,
+    weight: 1,
+    opacity: opacity,
+    fillOpacity: opacity * 0.85
+  }).bindPopup(popupHtml, {maxWidth: 220});
+}
+
 function renderMap() {
   if (!DATA) return;
-  const centers = DATA.center_summary;
-  const svg = document.getElementById('bkk-map');
-  const W=600,H=280, cols=10, rows=Math.ceil(centers.length/cols);
-  const cw=W/cols, ch=H/rows;
-  let html='';
-  centers.forEach((c,i)=>{
-    const col=i%cols, row=Math.floor(i/cols);
-    const cx=(cw*(col+0.5)+(Math.sin(i*2.1)*6)).toFixed(1);
-    const cy=(ch*(row+0.5)+(Math.cos(i*1.7)*4)).toFixed(1);
+  const centers = DATA.center_summary.filter(c=>c.lat && c.lon);
+  const mapEl = document.getElementById('leaflet-map');
+  if(!mapEl) return;
+
+  if(!leafletMap) {
+    leafletMap = L.map('leaflet-map', {
+      center: [13.756, 100.502], zoom: 11,
+      zoomControl: true, attributionControl: false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      opacity: 0.3
+    }).addTo(leafletMap);
+  }
+
+  // ลบ markers เดิม
+  leafletMarkers.forEach(m=>m.remove());
+  leafletMarkers = [];
+
+  centers.forEach(c=>{
     const val = currentMapMode==='ooc'?c.ooc_pct:currentMapMode==='cont'?c.continuity_pct:c.bp_pct;
-    const color = getColor(val, currentMapMode);
-    const r = (7+(val/100)*7).toFixed(1);
-    html+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity=".85"
-      stroke="${color}" stroke-width="0.5" style="cursor:pointer;transition:r .15s"
-      onmouseover="this.r.baseVal.value=parseFloat(this.r.baseVal.value)+3"
-      onmouseout="this.r.baseVal.value=${r}">
-      <title>ศบส.${c.hcode}: ${val.toFixed(1)}%</title></circle>`;
-    if(parseFloat(r)>11)
-      html+=`<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central"
-        font-size="8" fill="white" pointer-events="none">${c.hcode}</text>`;
+    const color = getColor(parseFloat(val), currentMapMode);
+    const r = 6 + (parseFloat(val)/100)*8;
+    const m = makeCircleMarker(c, val, color, 0.85, r).addTo(leafletMap);
+    leafletMarkers.push(m);
   });
-  svg.innerHTML=html;
+}
+
+function renderDVMap(selectedCenters) {
+  if(!DATA) return;
+  const all = DATA.center_summary.filter(c=>c.lat && c.lon);
+  const selSet = new Set(selectedCenters.map(c=>String(c.hcode)));
+  const mapEl = document.getElementById('dv-leaflet-map');
+  if(!mapEl) return;
+
+  if(!dvLeafletMap) {
+    dvLeafletMap = L.map('dv-leaflet-map', {
+      center: [13.756, 100.502], zoom: 11,
+      zoomControl: true, attributionControl: false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      opacity: 0.25
+    }).addTo(dvLeafletMap);
+  }
+
+  dvMarkers.forEach(m=>m.remove());
+  dvMarkers = [];
+
+  all.forEach(c=>{
+    const isSel = selSet.has(String(c.hcode));
+    const val = parseFloat(c.ooc_pct);
+    const color = isSel ? getColor(val,'ooc') : '#334155';
+    const opacity = isSel ? 0.9 : 0.25;
+    const r = isSel ? 6+(val/100)*8 : 4;
+    const m = makeCircleMarker(c, val, color, opacity, r);
+    if(isSel) m.addTo(dvLeafletMap);
+    else m.addTo(dvLeafletMap);
+    dvMarkers.push(m);
+  });
+
+  // zoom ไปที่ศูนย์ที่เลือก
+  const selCenters = selectedCenters.filter(c=>c.lat&&c.lon);
+  if(selCenters.length>0) {
+    const lats=selCenters.map(c=>c.lat), lons=selCenters.map(c=>c.lon);
+    const bounds=[[Math.min(...lats)-0.02,Math.min(...lons)-0.02],
+                  [Math.max(...lats)+0.02,Math.max(...lons)+0.02]];
+    dvLeafletMap.fitBounds(bounds);
+  }
+
+  const avg=a=>a.length?a.reduce((s,c)=>s+c,0)/a.length:0;
+  document.getElementById('dv-map-sub').textContent=
+    selectedCenters.length+' ศบส. | OOC avg '+avg(selectedCenters.map(c=>parseFloat(c.ooc_pct))).toFixed(1)+'%';
 }
 
 // ════════ TOP 10 TABLE ════════
@@ -771,19 +856,66 @@ function renderRegBody(k) {
 function renderRegTable(id, rows, estLabel) {
   if(!rows||!rows.length) return;
   const t=document.getElementById(id);
+  const container=t.parentElement;
+
+  // ตัวแปรหลักที่ผู้บริหารสนใจ
+  const KEY_VARS=['out_of_catchment','Out-of-Catchment','continuity_flag','continuity_flag1','age','sex_bin'];
+  const keyRows=rows.filter(r=>KEY_VARS.some(k=>r.variable.includes(k)));
+  const otherRows=rows.filter(r=>!KEY_VARS.some(k=>r.variable.includes(k)) && !r.variable.includes('(Intercept)'));
+
+  const varLabel=(v)=>{
+    if(v.includes('Out-of-Catchment')||v.includes('out_of_catchment')) return 'OOC vs In-Catchment';
+    if(v.includes('continuity_flag')) return 'ความสม่ำเสมอ';
+    if(v==='age') return 'อายุ';
+    if(v.includes('sex_bin')) return 'เพศชาย';
+    return v;
+  };
+
+  const rowHtml=(r,highlight)=>{
+    const pVal=parseFloat(r.p_value);
+    const pCol=pVal<0.05?'color:var(--red)':'color:var(--text2)';
+    const est=estLabel==='OR'?r.estimate:r.estimate;
+    return`<tr style="${highlight?'background:rgba(56,139,253,.08)':''}">
+      <td style="font-weight:${highlight?'600':'400'}">${varLabel(r.variable)}</td>
+      <td style="font-family:var(--mono);color:${highlight?'var(--teal)':'var(--text)'}">${est}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:var(--text2)">${r.ci_lower}–${r.ci_upper}</td>
+      <td style="font-family:var(--mono);${pCol}">${r.p_value}</td>
+      <td style="color:var(--red);font-family:var(--mono)">${r.sig}</td>
+    </tr>`;
+  };
+
+  // สร้าง unique id สำหรับ toggle
+  const toggleId='toggle-'+id;
+
   t.innerHTML=`<thead><tr>
     <th style="text-align:left">ตัวแปร</th>
-    <th>${estLabel}</th><th>CI lower</th><th>CI upper</th><th>p</th><th>sig</th>
-  </tr></thead><tbody>${rows.map(r=>{
-    const isMain=r.variable.includes('Out-of-Catchment')||r.variable.includes('out_of_catchment');
-    const pClass=parseFloat(r.p_value)<0.05?'style="color:var(--red)"':'';
-    return`<tr class="${isMain?'highlight':''}">
-      <td>${r.variable}</td>
-      <td>${r.estimate}</td><td>${r.ci_lower}</td><td>${r.ci_upper}</td>
-      <td ${pClass}>${r.p_value}</td>
-      <td class="sig-star">${r.sig}</td>
-    </tr>`;
-  }).join('')}</tbody>`;
+    <th>${estLabel}</th><th style="font-size:10px">95% CI</th><th>p</th><th>sig</th>
+  </tr></thead><tbody>
+    ${keyRows.map(r=>rowHtml(r,r.variable.includes('Out-of-Catchment')||r.variable.includes('out_of_catchment'))).join('')}
+    <tr id="${toggleId}-rows" style="display:none">
+      <td colspan="5" style="padding:0">
+        <table style="width:100%;border-collapse:collapse">
+          ${otherRows.map(r=>rowHtml(r,false)).join('')}
+        </table>
+      </td>
+    </tr>
+  </tbody>`;
+
+  // เพิ่ม/แทนที่ปุ่ม toggle
+  let btn=container.querySelector('.toggle-btn');
+  if(!btn){
+    btn=document.createElement('button');
+    btn.className='btn-reset toggle-btn';
+    btn.style.cssText='margin-top:8px;width:100%;font-size:11px;padding:5px;';
+    container.appendChild(btn);
+  }
+  btn.textContent='+ ดู covariates ทั้งหมด ('+otherRows.length+' ตัวแปร)';
+  btn.onclick=function(){
+    const tr=document.getElementById(toggleId+'-rows');
+    const show=tr.style.display==='none';
+    tr.style.display=show?'table-row':'none';
+    btn.textContent=(show?'− ซ่อน':'+ ดู')+' covariates ทั้งหมด ('+otherRows.length+' ตัวแปร)';
+  };
 }
 
 // ════════ FILTER DROPDOWNS ════════
@@ -1020,32 +1152,7 @@ function renderDV(centers, district, hcode) {
   }).join('');
 }
 
-function renderDVMap(selectedCenters) {
-  const svg=document.getElementById('dv-map');
-  if(!svg||!DATA) return;
-  const all=DATA.center_summary;
-  const selSet=new Set(selectedCenters.map(c=>String(c.hcode)));
-  const W=600,H=180,cols=10;
-  const cw=W/cols, rows=Math.ceil(all.length/cols), ch=H/rows;
-  let html='';
-  all.forEach((c,i)=>{
-    const col=i%cols, row=Math.floor(i/cols);
-    const cx=(cw*(col+0.5)+(Math.sin(i*2.1)*6)).toFixed(1);
-    const cy=(ch*(row+0.5)+(Math.cos(i*1.7)*3)).toFixed(1);
-    const isSel=selSet.has(String(c.hcode));
-    const color=isSel?getColor(c.ooc_pct,'ooc'):'#2a3040';
-    const r=isSel?(8+(c.ooc_pct/100)*6).toFixed(1):'4';
-    const opacity=isSel?'.9':'.3';
-    html+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="${opacity}" stroke="${isSel?color:'#444'}" stroke-width="${isSel?'1':'0.3'}"><title>${c.hcode}: OOC ${c.ooc_pct}%</title></circle>`;
-    if(isSel && parseFloat(r)>10)
-      html+=`<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-size="8" fill="white" pointer-events="none">${String(c.hcode).replace('ศบส.','')}</text>`;
-  });
-  svg.innerHTML=html;
-  // sub text
-  const avg=a=>a.length?a.reduce((s,c)=>s+c,0)/a.length:0;
-  document.getElementById('dv-map-sub').textContent=
-    selectedCenters.length+' ศบส. | OOC avg '+avg(selectedCenters.map(c=>c.ooc_pct)).toFixed(1)+'%';
-}
+// renderDVMap moved to Leaflet version above
 
 function resetFilter() {
   ['sel-group','sel-district','sel-hcode','sel-ooc'].forEach(id=>document.getElementById(id).value='all');
