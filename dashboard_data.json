@@ -79,9 +79,12 @@
       "continuity_pct": 11.53,
       "bp_pct": 62.5,
       "cost_median": 1270,
+      "display_hcode": "ศบส.1",
       "district": "พระนคร",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.1"
+      "lat": 13.7474,
+      "lon": 100.4966,
+      "hc_name": "ศูนย์บริการสาธารณสุข 1 สะพานมอญ"
     },
     {
       "hcode": "02",
@@ -90,9 +93,12 @@
       "continuity_pct": 40.31,
       "bp_pct": 45.27,
       "cost_median": 1286,
+      "display_hcode": "ศบส.2",
       "district": "ราชเทวี",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.2"
+      "lat": 13.749,
+      "lon": 100.5509,
+      "hc_name": "ศูนย์บริการสาธารณสุข 2 วัดมักกะสัน"
     },
     {
       "hcode": "03",
@@ -101,9 +107,12 @@
       "continuity_pct": 21.1,
       "bp_pct": 58.16,
       "cost_median": 2060,
+      "display_hcode": "ศบส.3",
       "district": "บางซื่อ",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.3"
+      "lat": 13.8023,
+      "lon": 100.534,
+      "hc_name": "ศูนย์บริการสาธารณสุข 3 บางซื่อ"
     },
     {
       "hcode": "04",
@@ -112,9 +121,12 @@
       "continuity_pct": 28.98,
       "bp_pct": 70.16,
       "cost_median": 1649,
+      "display_hcode": "ศบส.4",
       "district": "ดินแดง",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.4"
+      "lat": 13.7698,
+      "lon": 100.5581,
+      "hc_name": "ศูนย์บริการสาธารณสุข 4 ดินแดง"
     },
     {
       "hcode": "05",
@@ -123,9 +135,12 @@
       "continuity_pct": 5.86,
       "bp_pct": 83.7,
       "cost_median": 2823,
+      "display_hcode": "ศบส.5",
       "district": "ปทุมวัน",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.5"
+      "lat": 13.7361,
+      "lon": 100.5228,
+      "hc_name": "ศูนย์บริการสาธารณสุข 5 จุฬาลงกรณ์"
     },
     {
       "hcode": "06",
@@ -134,9 +149,12 @@
       "continuity_pct": 37.15,
       "bp_pct": 58.93,
       "cost_median": 1868,
+      "display_hcode": "ศบส.6",
       "district": "ดุสิต",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.6"
+      "lat": 13.7602,
+      "lon": 100.5169,
+      "hc_name": "ศูนย์บริการสาธารณสุข 6 สโมสรวัฒนธรรมหญิง"
     },
     {
       "hcode": "07",
@@ -145,9 +163,12 @@
       "continuity_pct": 19.73,
       "bp_pct": 50.12,
       "cost_median": 2068,
+      "display_hcode": "ศบส.7",
       "district": "ยานนาวา",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.7"
+      "lat": 13.681,
+      "lon": 100.5309,
+      "hc_name": "ศูนย์บริการสาธารณสุข 7 บุญมี ปุรุราชรังสรรค์"
     },
     {
       "hcode": "08",
@@ -156,9 +177,12 @@
       "continuity_pct": 29.16,
       "bp_pct": 61.17,
       "cost_median": 2031,
+      "display_hcode": "ศบส.8",
       "district": "บางนา",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.8"
+      "lat": 13.6769,
+      "lon": 100.6153,
+      "hc_name": "ศูนย์บริการสาธารณสุข 8 บุญรอด รุ่งเรือง"
     },
     {
       "hcode": "09",
@@ -167,9 +191,12 @@
       "continuity_pct": 17.21,
       "bp_pct": 49.57,
       "cost_median": 2013,
+      "display_hcode": "ศบส.9",
       "district": "พระนคร",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.9"
+      "lat": 13.7611,
+      "lon": 100.5037,
+      "hc_name": "ศูนย์บริการสาธารณสุข 9 ประชาธิปไตย"
     },
     {
       "hcode": "10",
@@ -178,9 +205,12 @@
       "continuity_pct": 2.22,
       "bp_pct": 37.78,
       "cost_median": 2286,
+      "display_hcode": "ศบส.10",
       "district": "คลองเตย",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.10"
+      "lat": 13.7279,
+      "lon": 100.573,
+      "hc_name": "ศูนย์บริการสาธารณสุข 10 สุขุมวิท"
     },
     {
       "hcode": "11",
@@ -189,9 +219,12 @@
       "continuity_pct": 18.5,
       "bp_pct": 66.77,
       "cost_median": 1128,
+      "display_hcode": "ศบส.11",
       "district": "พญาไท",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.11"
+      "lat": 13.7924,
+      "lon": 100.5396,
+      "hc_name": "ศูนย์บริการสาธารณสุข 11 ประดิพัทธ์"
     },
     {
       "hcode": "12",
@@ -200,9 +233,12 @@
       "continuity_pct": 26.49,
       "bp_pct": 58.04,
       "cost_median": 1940,
+      "display_hcode": "ศบส.12",
       "district": "บางคอแหลม",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.12"
+      "lat": 13.6919,
+      "lon": 100.5078,
+      "hc_name": "ศูนย์บริการสาธารณสุข 12 จันทร์เที่ยง เนตรวิเศษ"
     },
     {
       "hcode": "13",
@@ -211,9 +247,12 @@
       "continuity_pct": 5.77,
       "bp_pct": 73.63,
       "cost_median": 2341,
+      "display_hcode": "ศบส.13",
       "district": "สัมพันธวงศ์",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.13"
+      "lat": 13.7398,
+      "lon": 100.5058,
+      "hc_name": "ศูนย์บริการสาธารณสุข 13 ไมตรีวานิช"
     },
     {
       "hcode": "14",
@@ -222,9 +261,12 @@
       "continuity_pct": 13.05,
       "bp_pct": 50.84,
       "cost_median": 2080,
+      "display_hcode": "ศบส.14",
       "district": "บางคอแหลม",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.14"
+      "lat": 13.7093,
+      "lon": 100.5149,
+      "hc_name": "ศูนย์บริการสาธารณสุข 14 แก้ว สีบุญเรือง"
     },
     {
       "hcode": "15",
@@ -233,9 +275,12 @@
       "continuity_pct": 45.58,
       "bp_pct": 45,
       "cost_median": 1720,
+      "display_hcode": "ศบส.15",
       "district": "ห้วยขวาง",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.15"
+      "lat": 13.8025,
+      "lon": 100.5841,
+      "hc_name": "ศูนย์บริการสาธารณสุข 15 ลาดพร้าว"
     },
     {
       "hcode": "16",
@@ -244,9 +289,12 @@
       "continuity_pct": 28.55,
       "bp_pct": 49.82,
       "cost_median": 1686,
+      "display_hcode": "ศบส.16",
       "district": "ปทุมวัน",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.16"
+      "lat": 13.7273,
+      "lon": 100.5505,
+      "hc_name": "ศูนย์บริการสาธารณสุข 16 ลุมพินี"
     },
     {
       "hcode": "17",
@@ -255,9 +303,12 @@
       "continuity_pct": 49.22,
       "bp_pct": 39.13,
       "cost_median": 955,
+      "display_hcode": "ศบส.17",
       "district": "จตุจักร",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.17"
+      "lat": 13.8393,
+      "lon": 100.5463,
+      "hc_name": "ศูนย์บริการสาธารณสุข 17 ประชานิเวศน์"
     },
     {
       "hcode": "18",
@@ -266,9 +317,12 @@
       "continuity_pct": 16.31,
       "bp_pct": 59.03,
       "cost_median": 2208,
+      "display_hcode": "ศบส.18",
       "district": "บางคอแหลม",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.18"
+      "lat": 13.7002,
+      "lon": 100.5265,
+      "hc_name": "ศูนย์บริการสาธารณสุข 18 มงคล วอน วังตาล"
     },
     {
       "hcode": "19",
@@ -277,9 +331,12 @@
       "continuity_pct": 27.04,
       "bp_pct": 48.58,
       "cost_median": 1532,
+      "display_hcode": "ศบส.19",
       "district": "บางซื่อ",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.19"
+      "lat": 13.8271,
+      "lon": 100.5265,
+      "hc_name": "ศูนย์บริการสาธารณสุข 19 วงศ์สว่าง"
     },
     {
       "hcode": "20",
@@ -288,9 +345,12 @@
       "continuity_pct": 21.82,
       "bp_pct": 62.89,
       "cost_median": 1212,
+      "display_hcode": "ศบส.20",
       "district": "ป้อมปราบศัตรูพ่าย",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.20"
+      "lat": 13.7581,
+      "lon": 100.5132,
+      "hc_name": "ศูนย์บริการสาธารณสุข 20 ป้อมปราบศัตรูพ่าย"
     },
     {
       "hcode": "21",
@@ -299,9 +359,12 @@
       "continuity_pct": 10.77,
       "bp_pct": 50.85,
       "cost_median": 1519,
+      "display_hcode": "ศบส.21",
       "district": "วัฒนา",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.21"
+      "lat": 13.7199,
+      "lon": 100.5857,
+      "hc_name": "ศูนย์บริการสาธารณสุข 21 วัดธาตุทอง"
     },
     {
       "hcode": "22",
@@ -310,9 +373,12 @@
       "continuity_pct": 38.03,
       "bp_pct": 63.9,
       "cost_median": 1810,
+      "display_hcode": "ศบส.22",
       "district": "สวนหลวง",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.22"
+      "lat": 13.7129,
+      "lon": 100.6316,
+      "hc_name": "ศูนย์บริการสาธารณสุข 22 วัดปากบ่อ"
     },
     {
       "hcode": "23",
@@ -321,9 +387,12 @@
       "continuity_pct": 22.94,
       "bp_pct": 46.82,
       "cost_median": 1874,
+      "display_hcode": "ศบส.23",
       "district": "บางรัก",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.23"
+      "lat": 13.7309,
+      "lon": 100.5203,
+      "hc_name": "ศูนย์บริการสาธารณสุข 23 สี่พระยา"
     },
     {
       "hcode": "24",
@@ -332,9 +401,12 @@
       "continuity_pct": 14.52,
       "bp_pct": 77.75,
       "cost_median": 2950,
+      "display_hcode": "ศบส.24",
       "district": "จตุจักร",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.24"
+      "lat": 13.8497,
+      "lon": 100.5812,
+      "hc_name": "ศูนย์บริการสาธารณสุข 24 บางเขน"
     },
     {
       "hcode": "25",
@@ -343,9 +415,12 @@
       "continuity_pct": 12.03,
       "bp_pct": 72.16,
       "cost_median": 1962,
+      "display_hcode": "ศบส.25",
       "district": "ห้วยขวาง",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.25"
+      "lat": 13.7769,
+      "lon": 100.5796,
+      "hc_name": "ศูนย์บริการสาธารณสุข 25 ห้วยขวาง"
     },
     {
       "hcode": "26",
@@ -354,9 +429,12 @@
       "continuity_pct": 18.66,
       "bp_pct": 60.93,
       "cost_median": 2605,
+      "display_hcode": "ศบส.26",
       "district": "ธนบุรี",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.26"
+      "lat": 13.7381,
+      "lon": 100.4959,
+      "hc_name": "ศูนย์บริการสาธารณสุข 26 เจ้าคุณพระประยูรวงศ์"
     },
     {
       "hcode": "27",
@@ -365,9 +443,12 @@
       "continuity_pct": 56.96,
       "bp_pct": 62.91,
       "cost_median": 1838,
+      "display_hcode": "ศบส.27",
       "district": "ธนบุรี",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.27"
+      "lat": 13.7218,
+      "lon": 100.4811,
+      "hc_name": "ศูนย์บริการสาธารณสุข 27 จันทร์ ฉิมไพบูลย์"
     },
     {
       "hcode": "28",
@@ -376,9 +457,12 @@
       "continuity_pct": 23.82,
       "bp_pct": 50.84,
       "cost_median": 1894,
+      "display_hcode": "ศบส.28",
       "district": "คลองสาน",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.28"
+      "lat": 13.7205,
+      "lon": 100.5005,
+      "hc_name": "ศูนย์บริการสาธารณสุข 28 กรุงธนบุรี"
     },
     {
       "hcode": "29",
@@ -387,9 +471,12 @@
       "continuity_pct": 58.21,
       "bp_pct": 57.18,
       "cost_median": 1440,
+      "display_hcode": "ศบส.29",
       "district": "จอมทอง",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.29"
+      "lat": 13.7051,
+      "lon": 100.4684,
+      "hc_name": "ศูนย์บริการสาธารณสุข 29 ช่วง นุชเนตร"
     },
     {
       "hcode": "30",
@@ -398,9 +485,12 @@
       "continuity_pct": 20.97,
       "bp_pct": 68.94,
       "cost_median": 1348,
+      "display_hcode": "ศบส.30",
       "district": "บางกอกน้อย",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.30"
+      "lat": 13.7758,
+      "lon": 100.4661,
+      "hc_name": "ศูนย์บริการสาธารณสุข 30 วัดเจ้าอาม"
     },
     {
       "hcode": "31",
@@ -409,9 +499,12 @@
       "continuity_pct": 16.17,
       "bp_pct": 54.02,
       "cost_median": 1966,
+      "display_hcode": "ศบส.31",
       "district": "บางพลัด",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.31"
+      "lat": 13.7964,
+      "lon": 100.5081,
+      "hc_name": "ศูนย์บริการสาธารณสุข 31 เอิบ-จิตร ทังสุบุตร"
     },
     {
       "hcode": "32",
@@ -420,9 +513,12 @@
       "continuity_pct": 39.52,
       "bp_pct": 65.74,
       "cost_median": 2032,
+      "display_hcode": "ศบส.32",
       "district": "พระโขนง",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.32"
+      "lat": 13.6846,
+      "lon": 100.6057,
+      "hc_name": "ศูนย์บริการสาธารณสุข 32 มาริษ ตินตมุสิก"
     },
     {
       "hcode": "33",
@@ -431,9 +527,12 @@
       "continuity_pct": 56.25,
       "bp_pct": 55.93,
       "cost_median": 1464,
+      "display_hcode": "ศบส.33",
       "district": "บางกอกใหญ่",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.33"
+      "lat": 13.7394,
+      "lon": 100.4887,
+      "hc_name": "ศูนย์บริการสาธารณสุข 33 วัดหงส์รัตนาราม"
     },
     {
       "hcode": "34",
@@ -442,9 +541,12 @@
       "continuity_pct": 30.99,
       "bp_pct": 42.11,
       "cost_median": 1685,
+      "display_hcode": "ศบส.34",
       "district": "พระโขนง",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.34"
+      "lat": 13.6965,
+      "lon": 100.5978,
+      "hc_name": "ศูนย์บริการสาธารณสุข 34 โพธิ์ศรี"
     },
     {
       "hcode": "35",
@@ -453,9 +555,12 @@
       "continuity_pct": 34.42,
       "bp_pct": 64.4,
       "cost_median": 1071,
+      "display_hcode": "ศบส.35",
       "district": "บางกะปิ",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.35"
+      "lat": 13.7605,
+      "lon": 100.6389,
+      "hc_name": "ศูนย์บริการสาธารณสุข 35 หัวหมาก"
     },
     {
       "hcode": "36",
@@ -464,9 +569,12 @@
       "continuity_pct": 21.1,
       "bp_pct": 64.15,
       "cost_median": 1998,
+      "display_hcode": "ศบส.36",
       "district": "ธนบุรี",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.36"
+      "lat": 13.6959,
+      "lon": 100.4866,
+      "hc_name": "ศูนย์บริการสาธารณสุข 36 บุคคโล"
     },
     {
       "hcode": "37",
@@ -475,9 +583,12 @@
       "continuity_pct": 15.28,
       "bp_pct": 49.61,
       "cost_median": 1164,
+      "display_hcode": "ศบส.37",
       "district": "สวนหลวง",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.37"
+      "lat": 13.7358,
+      "lon": 100.6376,
+      "hc_name": "ศูนย์บริการสาธารณสุข 37 ประสงค์ สุดสาคร ตู้จินดา"
     },
     {
       "hcode": "38",
@@ -486,9 +597,12 @@
       "continuity_pct": 35.9,
       "bp_pct": 64.4,
       "cost_median": 1887,
+      "display_hcode": "ศบส.38",
       "district": "ดุสิต",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.38"
+      "lat": 13.7988,
+      "lon": 100.5194,
+      "hc_name": "ศูนย์บริการสาธารณสุข 38 จิ๊ด ทองคำ บำเพ็ญ"
     },
     {
       "hcode": "39",
@@ -497,9 +611,12 @@
       "continuity_pct": 42.95,
       "bp_pct": 57.32,
       "cost_median": 1753,
+      "display_hcode": "ศบส.39",
       "district": "ราษฎร์บูรณะ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.39"
+      "lat": 13.6802,
+      "lon": 100.5034,
+      "hc_name": "ศูนย์บริการสาธารณสุข 39 ราษฎร์บูรณะ"
     },
     {
       "hcode": "40",
@@ -508,9 +625,12 @@
       "continuity_pct": 11.86,
       "bp_pct": 71.39,
       "cost_median": 2888,
+      "display_hcode": "ศบส.40",
       "district": "บางแค",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.40"
+      "lat": 13.7104,
+      "lon": 100.4003,
+      "hc_name": "ศูนย์บริการสาธารณสุข 40 บางแค"
     },
     {
       "hcode": "41",
@@ -519,9 +639,12 @@
       "continuity_pct": 37.5,
       "bp_pct": 44.12,
       "cost_median": 1524,
+      "display_hcode": "ศบส.41",
       "district": "คลองเตย",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.41"
+      "lat": 13.7147,
+      "lon": 100.5698,
+      "hc_name": "ศูนย์บริการสาธารณสุข 41 คลองเตย"
     },
     {
       "hcode": "42",
@@ -530,9 +653,12 @@
       "continuity_pct": 22.24,
       "bp_pct": 56.25,
       "cost_median": 1220,
+      "display_hcode": "ศบส.42",
       "district": "บางขุนเทียน",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.42"
+      "lat": 13.6616,
+      "lon": 100.4353,
+      "hc_name": "ศูนย์บริการสาธารณสุข 42 ถนอม ทองสิมา"
     },
     {
       "hcode": "43",
@@ -541,9 +667,12 @@
       "continuity_pct": 18.4,
       "bp_pct": 56.18,
       "cost_median": 1832,
+      "display_hcode": "ศบส.43",
       "district": "มีนบุรี",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.43"
+      "lat": 13.8135,
+      "lon": 100.7307,
+      "hc_name": "ศูนย์บริการสาธารณสุข 43 มีนบุรี"
     },
     {
       "hcode": "44",
@@ -552,9 +681,12 @@
       "continuity_pct": 27.66,
       "bp_pct": 49.38,
       "cost_median": 1388,
+      "display_hcode": "ศบส.44",
       "district": "หนองจอก",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.44"
+      "lat": 13.8063,
+      "lon": 100.8474,
+      "hc_name": "ศูนย์บริการสาธารณสุข 44 ลำผักชี หนองจอก"
     },
     {
       "hcode": "45",
@@ -563,9 +695,12 @@
       "continuity_pct": 49.78,
       "bp_pct": 41.85,
       "cost_median": 1127,
+      "display_hcode": "ศบส.45",
       "district": "ลาดกระบัง",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.45"
+      "lat": 13.7611,
+      "lon": 100.7284,
+      "hc_name": "ศูนย์บริการสาธารณสุข 45 ร่มเกล้า ลาดกระบัง"
     },
     {
       "hcode": "46",
@@ -574,9 +709,12 @@
       "continuity_pct": 24.85,
       "bp_pct": 58.64,
       "cost_median": 1270,
+      "display_hcode": "ศบส.46",
       "district": "ลาดกระบัง",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.46"
+      "lat": 13.7232,
+      "lon": 100.7219,
+      "hc_name": "ศูนย์บริการสาธารณสุข 46 กันตารัติอุทิศ"
     },
     {
       "hcode": "47",
@@ -585,9 +723,12 @@
       "continuity_pct": 25.15,
       "bp_pct": 48.77,
       "cost_median": 1731,
+      "display_hcode": "ศบส.47",
       "district": "ภาษีเจริญ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.47"
+      "lat": 13.7389,
+      "lon": 100.4459,
+      "hc_name": "ศูนย์บริการสาธารณสุข 47 คลองขวาง"
     },
     {
       "hcode": "48",
@@ -596,9 +737,12 @@
       "continuity_pct": 24.62,
       "bp_pct": 55.25,
       "cost_median": 1650,
+      "display_hcode": "ศบส.48",
       "district": "หนองแขม",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.48"
+      "lat": 13.6902,
+      "lon": 100.3702,
+      "hc_name": "ศูนย์บริการสาธารณสุข 48 นาควัชระอุทิศ"
     },
     {
       "hcode": "49",
@@ -607,9 +751,12 @@
       "continuity_pct": 23.27,
       "bp_pct": 66.47,
       "cost_median": 1936,
+      "display_hcode": "ศบส.49",
       "district": "ตลิ่งชัน",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.49"
+      "lat": 13.795,
+      "lon": 100.4683,
+      "hc_name": "ศูนย์บริการสาธารณสุข 49 วัดชัยพฤกษมาลา"
     },
     {
       "hcode": "50",
@@ -618,9 +765,12 @@
       "continuity_pct": 53.04,
       "bp_pct": 60.2,
       "cost_median": 1200,
+      "display_hcode": "ศบส.50",
       "district": "บึงกุ่ม",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.50"
+      "lat": 13.7728,
+      "lon": 100.6554,
+      "hc_name": "ศูนย์บริการสาธารณสุข 50 บึงกุ่ม"
     },
     {
       "hcode": "51",
@@ -629,9 +779,12 @@
       "continuity_pct": 8.33,
       "bp_pct": 56.95,
       "cost_median": 1612,
+      "display_hcode": "ศบส.51",
       "district": "จตุจักร",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.51"
+      "lat": 13.8229,
+      "lon": 100.5664,
+      "hc_name": "ศูนย์บริการสาธารณสุข 51 จตุจักร"
     },
     {
       "hcode": "52",
@@ -640,9 +793,12 @@
       "continuity_pct": 21.08,
       "bp_pct": 73.99,
       "cost_median": 2458,
+      "display_hcode": "ศบส.52",
       "district": "ดินแดง",
       "district_group": "กรุงเทพกลาง",
-      "display_hcode": "ศบส.52"
+      "lat": 13.7775,
+      "lon": 100.5703,
+      "hc_name": "ศูนย์บริการสาธารณสุข 52 สามเสนนอก"
     },
     {
       "hcode": "53",
@@ -651,9 +807,12 @@
       "continuity_pct": 19.51,
       "bp_pct": 56.86,
       "cost_median": 1788,
+      "display_hcode": "ศบส.53",
       "district": "หลักสี่",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.53"
+      "lat": 13.9025,
+      "lon": 100.5801,
+      "hc_name": "ศูนย์บริการสาธารณสุข 53 ทุ่งสองห้อง"
     },
     {
       "hcode": "54",
@@ -662,9 +821,12 @@
       "continuity_pct": 20.21,
       "bp_pct": 52.42,
       "cost_median": 2082,
+      "display_hcode": "ศบส.54",
       "district": "ทุ่งครุ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.54"
+      "lat": 13.6505,
+      "lon": 100.4887,
+      "hc_name": "ศูนย์บริการสาธารณสุข 54 ทัศน์เอี่ยม"
     },
     {
       "hcode": "55",
@@ -673,9 +835,12 @@
       "continuity_pct": 27.19,
       "bp_pct": 60.87,
       "cost_median": 1586,
+      "display_hcode": "ศบส.55",
       "district": "ยานนาวา",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.55"
+      "lat": 13.6825,
+      "lon": 100.5482,
+      "hc_name": "ศูนย์บริการสาธารณสุข 55 เตชะสัมพันธ์"
     },
     {
       "hcode": "56",
@@ -684,9 +849,12 @@
       "continuity_pct": 23.65,
       "bp_pct": 64.15,
       "cost_median": 1777,
+      "display_hcode": "ศบส.56",
       "district": "บึงกุ่ม",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.56"
+      "lat": 13.8374,
+      "lon": 100.637,
+      "hc_name": "ศูนย์บริการสาธารณสุข 56 ทับเจริญ"
     },
     {
       "hcode": "57",
@@ -695,9 +863,12 @@
       "continuity_pct": 41.95,
       "bp_pct": 55.25,
       "cost_median": 1220,
+      "display_hcode": "ศบส.57",
       "district": "ประเวศ",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.57"
+      "lat": 13.6767,
+      "lon": 100.6625,
+      "hc_name": "ศูนย์บริการสาธารณสุข 57 บุญเรือง ล้ำเลิศ"
     },
     {
       "hcode": "58",
@@ -706,9 +877,12 @@
       "continuity_pct": 27.8,
       "bp_pct": 58.88,
       "cost_median": 940,
+      "display_hcode": "ศบส.58",
       "district": "ราษฎร์บูรณะ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.58"
+      "lat": 13.6786,
+      "lon": 100.4957,
+      "hc_name": "ศูนย์บริการสาธารณสุข 58 ล้อม-พิมเสน ฟักอุดม"
     },
     {
       "hcode": "59",
@@ -717,9 +891,12 @@
       "continuity_pct": 17.41,
       "bp_pct": 63.33,
       "cost_median": 1570,
+      "display_hcode": "ศบส.59",
       "district": "ทุ่งครุ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.59"
+      "lat": 13.6072,
+      "lon": 100.5064,
+      "hc_name": "ศูนย์บริการสาธารณสุข 59 ทุ่งครุ"
     },
     {
       "hcode": "60",
@@ -728,9 +905,12 @@
       "continuity_pct": 52.83,
       "bp_pct": 70.36,
       "cost_median": 1362,
+      "display_hcode": "ศบส.60",
       "district": "ดอนเมือง",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.60"
+      "lat": 13.9253,
+      "lon": 100.5807,
+      "hc_name": "ศูนย์บริการสาธารณสุข 60 รสสุคนธ์ มโนชญากร"
     },
     {
       "hcode": "61",
@@ -739,9 +919,12 @@
       "continuity_pct": 19.75,
       "bp_pct": 68.06,
       "cost_median": 1345,
+      "display_hcode": "ศบส.61",
       "district": "สายไหม",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.61"
+      "lat": 13.9287,
+      "lon": 100.6594,
+      "hc_name": "ศูนย์บริการสาธารณสุข 61 สังวาลย์ ทัสนารมย์"
     },
     {
       "hcode": "62",
@@ -750,9 +933,12 @@
       "continuity_pct": 12.16,
       "bp_pct": 57.34,
       "cost_median": 1936,
+      "display_hcode": "ศบส.62",
       "district": "ภาษีเจริญ",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.62"
+      "lat": 13.694,
+      "lon": 100.4348,
+      "hc_name": "ศูนย์บริการสาธารณสุข 62 ตวงรัชฎ์ฯ ศศะนาวิน ภักดี ฐานปัญญา"
     },
     {
       "hcode": "63",
@@ -761,9 +947,12 @@
       "continuity_pct": 28.04,
       "bp_pct": 57.06,
       "cost_median": 1318,
+      "display_hcode": "ศบส.63",
       "district": "สาทร",
       "district_group": "กรุงเทพใต้",
-      "display_hcode": "ศบส.63"
+      "lat": 13.7124,
+      "lon": 100.5246,
+      "hc_name": "ศูนย์บริการสาธารณสุข 63 สมาคมแต้จิ๋วแห่งประเทศไทย"
     },
     {
       "hcode": "64",
@@ -772,9 +961,12 @@
       "continuity_pct": 37.32,
       "bp_pct": 56.18,
       "cost_median": 1235,
+      "display_hcode": "ศบส.64",
       "district": "คลองสามวา",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.64"
+      "lat": 13.8584,
+      "lon": 100.7042,
+      "hc_name": "ศูนย์บริการสาธารณสุข 64 คลองสามวา"
     },
     {
       "hcode": "65",
@@ -783,9 +975,12 @@
       "continuity_pct": 27.99,
       "bp_pct": 53.39,
       "cost_median": 1745,
+      "display_hcode": "ศบส.65",
       "district": "บางบอน",
       "district_group": "กรุงธนใต้",
-      "display_hcode": "ศบส.65"
+      "lat": 13.6426,
+      "lon": 100.3781,
+      "hc_name": "ศูนย์บริการสาธารณสุข 65 รักษาศุข บางบอน"
     },
     {
       "hcode": "66",
@@ -794,9 +989,12 @@
       "continuity_pct": 10.33,
       "bp_pct": 71.12,
       "cost_median": 1837,
+      "display_hcode": "ศบส.66",
       "district": "ลาดพร้าว",
       "district_group": "กรุงเทพเหนือ",
-      "display_hcode": "ศบส.66"
+      "lat": 13.8102,
+      "lon": 100.5949,
+      "hc_name": "ศูนย์บริการสาธารณสุข 66 ตำหนักพระแม่กวนอิม โชคชัย 4"
     },
     {
       "hcode": "67",
@@ -805,9 +1003,12 @@
       "continuity_pct": 14.15,
       "bp_pct": 59.6,
       "cost_median": 2410,
+      "display_hcode": "ศบส.67",
       "district": "ทวีวัฒนา",
       "district_group": "กรุงธนเหนือ",
-      "display_hcode": "ศบส.67"
+      "lat": 13.7731,
+      "lon": 100.3543,
+      "hc_name": "ศูนย์บริการสาธารณสุข 67 ทวีวัฒนา"
     },
     {
       "hcode": "68",
@@ -816,9 +1017,12 @@
       "continuity_pct": 46.42,
       "bp_pct": 34.35,
       "cost_median": 906,
+      "display_hcode": "ศบส.68",
       "district": "สะพานสูง",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.68"
+      "lat": 13.7692,
+      "lon": 100.6869,
+      "hc_name": "ศูนย์บริการสาธารณสุข 68 สะพานสูง"
     },
     {
       "hcode": "69",
@@ -827,9 +1031,12 @@
       "continuity_pct": 38.32,
       "bp_pct": 47.85,
       "cost_median": 1088,
+      "display_hcode": "ศบส.69",
       "district": "คันนายาว",
       "district_group": "กรุงเทพตะวันออก",
-      "display_hcode": "ศบส.69"
+      "lat": 13.7997,
+      "lon": 100.6836,
+      "hc_name": "ศูนย์บริการสาธารณสุข 69 คันนายาว"
     }
   ],
   "center_group3_summary": [
