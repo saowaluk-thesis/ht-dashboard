@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard ผลกระทบประชากรแฝง | ศูนย์บริการสาธารณสุข กทม.</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+.leaflet-container { background: #0d1117 !important; }
+.leaflet-tile { filter: brightness(0.35) saturate(0.5) hue-rotate(200deg); }
+.hc-popup { font-family:'Sarabun',sans-serif; font-size:13px; min-width:200px; }
+.hc-popup h4 { margin:0 0 6px; font-size:14px; color:#2dd4bf; }
+.hc-popup table { width:100%; border-collapse:collapse; }
+.hc-popup td { padding:3px 0; color:#555; }
+.hc-popup td:last-child { text-align:right; font-weight:600; color:#222; }
+.district-tooltip {
+  background: rgba(13,17,23,0.85) !important;
+  border: 1px solid #388bfd !important;
+  color: #8b949e !important;
+  font-family: 'Sarabun', sans-serif !important;
+  font-size: 11px !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
+  display: none !important;
+}
+</style>
+<style>
+:root {
+  --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;
+  --text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+  --blue:#388bfd;--blue-dim:#1f3a5f;
+  --teal:#2dd4bf;--teal-dim:#0d3830;
+  --amber:#f59e0b;--amber-dim:#3d2800;
+  --red:#f85149;--red-dim:#3d0f0f;
+  --green:#3fb950;--green-dim:#0d2e14;
+  --purple:#a371f7;--purple-dim:#271c47;
+  --font:'Sarabun',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6;min-height:100vh;}
+
+/* ── Data source banner ── */
+.data-banner{
+  background:var(--teal-dim);border-bottom:1px solid #1a5a50;
+  padding:8px 28px;display:flex;align-items:center;gap:10px;font-size:12px;
+}
+.data-banner.demo{background:var(--amber-dim);border-bottom-color:#5a3800;}
+.data-banner span{color:var(--teal);font-family:var(--mono);}
+.data-banner.demo span{color:var(--amber);}
+
+/* ── Header ── */
+.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;height:60px;
+  position:sticky;top:0;z-index:100;}
+.header-title{display:flex;align-items:center;gap:12px;}
+.header-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 8px var(--teal);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.header h1{font-size:17px;font-weight:600;letter-spacing:.01em;}
+.header-sub{font-size:12px;color:var(--text2);font-family:var(--mono);}
+.header-badge{font-size:11px;font-family:var(--mono);background:var(--teal-dim);
+  color:var(--teal);border:1px solid #1a5a50;border-radius:4px;padding:3px 8px;}
+
+/* ── Layout ── */
+.wrap{max-width:1400px;margin:0 auto;padding:24px 28px;}
+.filter-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;align-items:center;}
+.filter-label{font-size:12px;color:var(--text2);font-family:var(--mono);}
+.filter-group{display:flex;gap:8px;align-items:center;}
+select,.btn-filter{background:var(--bg2);border:1px solid var(--border);color:var(--text);
+  font-family:var(--font);font-size:13px;padding:6px 12px;border-radius:6px;
+  cursor:pointer;transition:border-color .15s;}
+select:hover,.btn-filter:hover{border-color:var(--blue);}
+.btn-reset{background:transparent;border:1px solid var(--border);color:var(--text2);
+  font-size:12px;padding:6px 10px;border-radius:6px;cursor:pointer;
+  font-family:var(--mono);transition:all .15s;}
+.btn-reset:hover{border-color:var(--red);color:var(--red);}
+
+/* ── KPI ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:18px 20px;position:relative;overflow:hidden;transition:border-color .15s,transform .15s;}
+.kpi:hover{border-color:var(--blue);transform:translateY(-1px);}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0;}
+.kpi.blue::before{background:var(--blue);}
+.kpi.teal::before{background:var(--teal);}
+.kpi.amber::before{background:var(--amber);}
+.kpi.green::before{background:var(--green);}
+.kpi-label{font-size:12px;color:var(--text2);margin-bottom:6px;font-family:var(--mono);}
+.kpi-value{font-size:32px;font-weight:700;line-height:1;margin-bottom:4px;font-family:var(--mono);}
+.kpi-sub{font-size:12px;color:var(--text2);}
+.kpi-change{font-size:11px;font-family:var(--mono);margin-top:8px;display:inline-flex;
+  align-items:center;gap:4px;padding:2px 7px;border-radius:3px;}
+.kpi-change.ns{background:var(--bg3);color:var(--text2);}
+.kpi-change.sig{background:var(--teal-dim);color:var(--teal);}
+.kpi-change.warn{background:var(--amber-dim);color:var(--amber);}
+
+/* ── Grid ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-12{display:grid;grid-template-columns:7fr 5fr;gap:16px;margin-bottom:16px;}
+
+/* ── Card ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.card-header{padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.card-title{font-size:13px;font-weight:600;color:var(--text);}
+.card-sub{font-size:11px;color:var(--text2);font-family:var(--mono);}
+.card-body{padding:20px;}
+.card-body-sm{padding:14px 18px;}
+
+/* ── Tabs ── */
+.tabs{display:flex;gap:4px;}
+.tab{font-size:12px;font-family:var(--mono);padding:4px 10px;border-radius:4px;
+  cursor:pointer;color:var(--text2);border:1px solid transparent;transition:all .12s;}
+.tab.active{background:var(--bg3);border-color:var(--border);color:var(--text);}
+.tab:hover:not(.active){color:var(--text);}
+
+/* ── Map ── */
+.map-container{position:relative;background:var(--bg3);border-radius:8px;overflow:hidden;}
+.map-legend{position:absolute;bottom:12px;right:12px;background:rgba(13,17,23,.85);
+  border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:11px;}
+.legend-row{display:flex;align-items:center;gap:7px;margin-bottom:4px;color:var(--text2);}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* ── Table ── */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;}
+.data-table th{text-align:left;font-size:11px;font-family:var(--mono);color:var(--text2);
+  font-weight:500;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
+.data-table td{padding:9px 12px;border-bottom:1px solid rgba(48,54,61,.5);color:var(--text);}
+.data-table tr:hover td{background:var(--bg3);}
+.data-table tr:last-child td{border-bottom:none;}
+.badge{font-size:11px;font-family:var(--mono);padding:2px 7px;border-radius:3px;display:inline-block;}
+.badge-high{background:var(--red-dim);color:var(--red);}
+.badge-mid{background:var(--amber-dim);color:var(--amber);}
+.badge-low{background:var(--green-dim);color:var(--green);}
+.badge-teal{background:var(--teal-dim);color:var(--teal);}
+.badge-blue{background:var(--blue-dim);color:var(--blue);}
+.badge-gray{background:var(--bg3);color:var(--text2);}
+
+/* ── Progress ── */
+.progress-wrap{margin-bottom:12px;}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;}
+.progress-label span:first-child{color:var(--text);}
+.progress-label span:last-child{color:var(--text2);font-family:var(--mono);}
+.progress-track{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+
+/* ── Stat box ── */
+.stat-row{display:flex;gap:12px;margin-bottom:12px;}
+.stat-box{flex:1;background:var(--bg3);border-radius:7px;padding:12px 14px;border:1px solid var(--border);}
+.stat-box-label{font-size:11px;color:var(--text2);font-family:var(--mono);margin-bottom:4px;}
+.stat-box-val{font-size:20px;font-weight:700;font-family:var(--mono);}
+.stat-box-unit{font-size:11px;color:var(--text2);margin-top:1px;}
+
+/* ── Finding ── */
+.finding{background:var(--bg3);border-left:3px solid var(--teal);border-radius:0 7px 7px 0;
+  padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.6;}
+.finding.warn{border-left-color:var(--amber);}
+.finding.info{border-left-color:var(--blue);}
+.finding strong{color:var(--teal);}
+.finding.warn strong{color:var(--amber);}
+.finding.info strong{color:var(--blue);}
+
+/* ── Section title ── */
+.section-title{font-size:11px;font-family:var(--mono);color:var(--text3);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;
+  padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+/* ── Regression table ── */
+.reg-table{width:100%;border-collapse:collapse;font-size:12px;}
+.reg-table th{font-size:10px;font-family:var(--mono);color:var(--text3);padding:6px 10px;
+  border-bottom:1px solid var(--border);text-align:right;}
+.reg-table th:first-child{text-align:left;}
+.reg-table td{padding:7px 10px;border-bottom:1px solid rgba(48,54,61,.4);
+  font-family:var(--mono);font-size:12px;text-align:right;}
+.reg-table td:first-child{text-align:left;font-family:var(--font);color:var(--text);}
+.reg-table tr.highlight td{background:rgba(56,139,253,.08);}
+.reg-table tr:hover td{background:var(--bg3);}
+.sig-star{color:var(--red);}
+
+canvas{max-height:240px;}
+
+.footer{border-top:1px solid var(--border);padding:16px 28px;font-size:11px;
+  color:var(--text3);font-family:var(--mono);display:flex;justify-content:space-between;margin-top:24px;}
+
+@media(max-width:1100px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .grid-12,.grid-2,.grid-3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ DATA BANNER ════ -->
+<div class="data-banner demo" id="data-banner">
+  <span id="banner-icon">⚠</span>
+  <span id="banner-text">กำลังโหลดข้อมูล...</span>
+</div>
+
+<!-- ════ HEADER ════ -->
+<header class="header">
+  <div class="header-title">
+    <div class="header-dot"></div>
+    <div>
+      <h1>Dashboard ผลกระทบประชากรแฝง · ศูนย์บริการสาธารณสุข กทม.</h1>
+      <div class="header-sub" id="header-sub">ปีงบประมาณ 2567 | กำลังโหลด...</div>
+    </div>
+  </div>
+  <div class="header-badge" id="header-badge">LOADING</div>
+</header>
+
+<div class="wrap">
+
+<!-- ════ FILTERS ════ -->
+<div class="filter-bar">
+  <span class="filter-label">FILTER:</span>
+  <div class="filter-group">
+    <select id="sel-group" onchange="onGroupChange()"><option value="all">ทุกกลุ่มเขต</option></select>
+    <span style="color:var(--text3);padding:0 4px;font-size:13px;">›</span>
+    <select id="sel-district" onchange="onDistrictChange()"><option value="all">ทุกเขต</option></select>
+    <span style="color:var(--text3);padding:0 4px;font-size:13px;">›</span>
+    <select id="sel-hcode" onchange="applyFilter()"><option value="all">ทุก ศบส.</option></select>
+    <span style="color:var(--border);padding:0 6px;font-size:13px;">|</span>
+    <select id="sel-ooc" onchange="applyFilter()">
+      <option value="all">ทุกกลุ่ม OOC</option>
+      <option value="in">In-Catchment</option>
+      <option value="ooc_bkk">OOC-Bangkok</option>
+      <option value="ooc_out">OOC-Outside</option>
+    </select>
+  </div>
+  <div class="filter-group" style="margin-left:auto;">
+    <button class="btn-reset" onclick="resetFilter()">↺ รีเซ็ต</button>
+  </div>
+</div>
+<div id="fs" style="display:none;background:var(--blue-dim);border-bottom:1px solid rgba(56,139,253,.3);padding:7px 28px;font-size:12px;color:var(--blue);font-family:var(--mono);"></div>
+<!-- ════ DISTRICT VIEW (แสดงเมื่อ filter เขต/ศบส.) ════ -->
+<div id="district-view" style="display:none;">
+<div class="wrap" style="padding-bottom:0;">
+  <div id="dv-kpi" class="kpi-grid" style="margin-bottom:16px;"></div>
+  <div class="grid-12" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">เปรียบเทียบ 3 กลุ่ม: ในเขต VS นอกเขต (กทม.) VS นอกเขต (ต่างจังหวัด)</div>
+        <div class="card-sub" id="dv-sub">—</div></div>
+      </div>
+      <div class="card-body" style="padding:0 20px 16px;" id="dv-group3"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <!-- แผนที่ highlight -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">แผนที่ ศบส. ในเขตที่เลือก</div>
+          <div class="card-sub" id="dv-map-sub">—</div>
+        </div>
+        <div class="card-body" style="padding:12px;">
+          <div id="dv-leaflet-map" style="height:200px;width:100%;border-radius:8px;"></div>
+          <div style="margin-top:8px;font-size:11px;color:var(--text2);">⬤ สี = ศบส. ในเขตที่เลือก | จาง = ศบส. อื่น | คลิกจุดเพื่อดูข้อมูล</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">กราฟเปรียบเทียบ ศบส. ในเขต vs ค่าเฉลี่ย กทม.</div>
+        <div class="card-sub">เส้นแดง = benchmark กทม.</div>
+      </div>
+      <div class="card-body-sm"><canvas id="dv-chart" style="max-height:220px;"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title" id="dv-hc-title">ตารางรายศบส. ในเขตที่เลือก</div>
+        <div class="card-sub">↑ สูงกว่า / ↓ ต่ำกว่าค่าเฉลี่ย กทม.</div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr>
+            <th>ศบส.</th><th>n</th><th style="color:var(--amber)">%OOC</th>
+            <th>สม่ำเสมอ</th><th>BP%</th><th>ค่าใช้จ่าย</th><th>vs กทม.</th>
+          </tr></thead>
+          <tbody id="dv-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <hr style="border:none;border-top:1px solid var(--border);margin-bottom:20px;">
+</div>
+</div>
+
+<!-- ════ KPI ════ -->
+<div class="kpi-grid">
+  <div class="kpi blue">
+    <div class="kpi-label">ผู้รับบริการทั้งหมด</div>
+    <div class="kpi-value" style="color:var(--blue)" id="kpi-total">—</div>
+    <div class="kpi-sub" id="kpi-total-sub">ราย | — ศบส.</div>
+    <span class="kpi-change ns">ICD-10 I10–I15 อายุ ≥ 60 ปี</span>
+  </div>
+  <div class="kpi teal">
+    <div class="kpi-label">สัดส่วนประชากรแฝง</div>
+    <div class="kpi-value" style="color:var(--teal)" id="kpi-ooc">—</div>
+    <div class="kpi-sub" id="kpi-ooc-sub">— ราย</div>
+    <span class="kpi-change warn" id="kpi-ooc-badge">—</span>
+  </div>
+  <div class="kpi amber">
+    <div class="kpi-label">ความสม่ำเสมอในการมารับบริการ</div>
+    <div class="kpi-value" style="color:var(--amber)" id="kpi-cont">—</div>
+    <div class="kpi-sub">มารับบริการ ≥ 3 ครั้ง ห่าง ≥ 30 วัน</div>
+    <span class="kpi-change ns" id="kpi-cont-badge">—</span>
+  </div>
+  <div class="kpi green">
+    <div class="kpi-label">ควบคุมความดันโลหิตได้</div>
+    <div class="kpi-value" style="color:var(--green)" id="kpi-bp">—</div>
+    <div class="kpi-sub">SBP &lt; 140 และ DBP &lt; 90 mmHg</div>
+    <span class="kpi-change ns" id="kpi-bp-badge">—</span>
+  </div>
+</div>
+
+<!-- ════ ROW 1: MAP + COMPARISON ════ -->
+<div class="grid-12">
+
+  <!-- MAP -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">การกระจายประชากรแฝงรายศูนย์บริการสาธารณสุข</div>
+        <div class="card-sub" id="map-sub">กำลังโหลดข้อมูล...</div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchMap('ooc',this)">% OOC</div>
+        <div class="tab" onclick="switchMap('cont',this)">ความสม่ำเสมอ</div>
+        <div class="tab" onclick="switchMap('bp',this)">ควบคุม BP</div>
+      </div>
+    </div>
+    <div class="card-body" style="padding:16px;">
+      <div class="map-container" style="height:320px;position:relative;">
+        <div id="leaflet-map" style="height:320px;width:100%;border-radius:8px;"></div>
+        <div class="map-legend" id="map-legend" style="z-index:1000;">
+          <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-family:var(--mono)" id="legend-title">% OOC</div>
+          <div class="legend-row"><div class="legend-dot" style="background:#1a3a5f"></div>&lt; 20%</div>
+          <div class="legend-row"><div class="legend-dot" style="background:#1f6aa5"></div>20–35%</div>
+          <div class="legend-row"><div class="legend-dot" style="background:#388bfd"></div>35–50%</div>
+          <div class="legend-row"><div class="legend-dot" style="background:#f59e0b"></div>50–70%</div>
+          <div class="legend-row"><div class="legend-dot" style="background:#f85149"></div>&gt; 70%</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div class="section-title">10 ศูนย์ที่มีสัดส่วน OOC สูงสุด</div>
+        <table class="data-table">
+          <thead><tr><th>#</th><th>ศูนย์</th><th>% OOC</th><th>ความสม่ำเสมอ</th><th>ควบคุม BP</th><th>ระดับ</th></tr></thead>
+          <tbody id="top-centers"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">เปรียบเทียบ 3 กลุ่มสถานะที่อยู่</div>
+        <div class="card-sub">In-Catchment · OOC-Bangkok · OOC-Outside</div>
+      </div>
+      <div class="card-body-sm"><canvas id="chart-compare"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">ค่าใช้จ่ายสุขภาพรายปี (มัธยฐาน)</div>
+        <div class="card-sub">บาท/ปี | Winsorized P99</div>
+      </div>
+      <div class="card-body-sm"><canvas id="chart-cost"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ ROW 2: FINDINGS + REGRESSION ════ -->
+<div class="grid-2">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ข้อค้นพบสำคัญสำหรับผู้บริหาร</div>
+      <div class="card-sub">จากการวิเคราะห์ถดถอยปรับตัวแปรร่วมแล้ว</div>
+    </div>
+    <div class="card-body" id="findings-body">
+      <div style="color:var(--text2);font-size:13px;padding:20px 0;text-align:center;">กำลังโหลดผลการวิเคราะห์...</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ผลการวิเคราะห์ถดถอย — สรุปสำหรับผู้บริหาร</div>
+      <div class="card-sub">Cluster-robust SE | cluster = ศบส. 69 แห่ง</div>
+    </div>
+    <div class="card-body" style="padding:14px 18px;" id="reg-body">
+      <div style="color:var(--text2);font-size:13px;padding:20px 0;text-align:center;">กำลังโหลด...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ ROW 3: REGRESSION TABLES ════ -->
+<div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ผลลัพธ์ที่ 1: ความสม่ำเสมอ</div>
+      <div class="card-sub">Adjusted OR (95% CI) | n = 42,288</div>
+    </div>
+    <div class="card-body-sm" style="overflow-x:auto;">
+      <table class="reg-table" id="tbl-cont"></table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ผลลัพธ์ที่ 2: ควบคุม BP</div>
+      <div class="card-sub">Adjusted OR (95% CI) + continuity_flag</div>
+    </div>
+    <div class="card-body-sm" style="overflow-x:auto;">
+      <table class="reg-table" id="tbl-bp"></table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ผลลัพธ์ที่ 3: ค่าใช้จ่าย</div>
+      <div class="card-sub">β (log scale) | R² = <span id="r2-val">—</span></div>
+    </div>
+    <div class="card-body-sm" style="overflow-x:auto;">
+      <table class="reg-table" id="tbl-cost"></table>
+    </div>
+  </div>
+</div>
+
+<!-- ════ ROW 4: DISTRIBUTIONS ════ -->
+<div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ความสม่ำเสมอรายศูนย์</div>
+      <div class="card-sub" id="cont-dist-sub">Mean — | Range —</div>
+    </div>
+    <div class="card-body-sm"><canvas id="chart-cont-dist"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">อัตราควบคุม BP รายศูนย์</div>
+      <div class="card-sub" id="bp-dist-sub">Mean — | Range —</div>
+    </div>
+    <div class="card-body-sm"><canvas id="chart-bp-dist"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ความสม่ำเสมอ × ควบคุม BP</div>
+      <div class="card-sub">ระดับศูนย์ (scatter)</div>
+    </div>
+    <div class="card-body-sm"><canvas id="chart-scatter"></canvas></div>
+  </div>
+</div>
+
+</div><!-- end wrap -->
+
+<footer class="footer">
+  <span>วิทยานิพนธ์ วท.ม. สถิติประยุกต์ | เสาวลักษณ์ หนูในน้ำ | มหาวิทยาลัยสงขลานครินทร์ 2568</span>
+  <span id="footer-right">PSU-HREC-2025-049-1-3 | ข้อมูล HCIS สำนักอนามัย กทม.</span>
+</footer>
+
+<!-- ════════════════════════════════════════ -->
+<script>
+// ════════ CHART DEFAULTS ════════
+Chart.defaults.color = '#8b949e';
+Chart.defaults.font.family = "'Sarabun', sans-serif";
+Chart.defaults.font.size = 12;
+const gridOpts = { color:'rgba(48,54,61,.6)', drawBorder:false };
+const tooltipOpts = { backgroundColor:'#21262d', borderColor:'#30363d', borderWidth:1,
+  titleColor:'#e6edf3', bodyColor:'#8b949e', padding:10 };
+
+// ════════ GLOBAL DATA ════════
+let DATA = null;
+let chartCompare=null, chartCost=null, chartContDist=null, chartBpDist=null, chartScatter=null;
+
+// ════════ LOAD JSON ════════
+async function loadData() {
+  try {
+    const res = await fetch('dashboard_data.json');
+    if (!res.ok) throw new Error('ไม่พบไฟล์');
+    DATA = await res.json();
+    showBanner(true, DATA.kpi.exported_at);
+    renderAll(DATA);
+  } catch(e) {
+    // ใช้ข้อมูลจำลองถ้าไม่มีไฟล์ JSON
+    showBanner(false, null);
+    DATA = getDemoData();
+    renderAll(DATA);
+  }
+}
+
+function showBanner(isReal, exportedAt) {
+  const banner = document.getElementById('data-banner');
+  const icon   = document.getElementById('banner-icon');
+  const text   = document.getElementById('banner-text');
+  if (isReal) {
+    banner.classList.remove('demo');
+    icon.textContent = '✓';
+    text.textContent = `ข้อมูลจริงจาก R | export เมื่อ ${exportedAt}`;
+    banner.querySelector('span:first-child').style.color = 'var(--teal)';
+  } else {
+    icon.textContent = '⚠';
+    text.textContent = 'ใช้ข้อมูลจำลอง — วาง dashboard_data.json ในโฟลเดอร์เดียวกันแล้ว refresh';
+  }
+}
+
+// ════════ RENDER ALL ════════
+function renderAll(d) {
+  const k = d.kpi;
+  // Header
+  document.getElementById('header-sub').textContent =
+    `ปีงบประมาณ ${k.fiscal_year} | n = ${k.total_n.toLocaleString()} ราย | ${k.n_centers} ศบส.`;
+  document.getElementById('header-badge').textContent = `FY${k.fiscal_year}`;
+
+  // KPI
+  document.getElementById('kpi-total').textContent     = k.total_n.toLocaleString();
+  document.getElementById('kpi-total-sub').textContent = `ราย | ${k.n_centers} ศบส.`;
+  document.getElementById('kpi-ooc').textContent       = k.ooc_pct + '%';
+  document.getElementById('kpi-ooc-sub').textContent   = `${k.ooc_n.toLocaleString()} ราย`;
+  document.getElementById('kpi-ooc-badge').textContent = `OOC = ${k.ooc_n.toLocaleString()} ราย`;
+  document.getElementById('kpi-cont').textContent      = k.continuity_pct + '%';
+  document.getElementById('kpi-cont-badge').textContent= `OOC vs In: OR=${k.or_ooc_cont} p=${k.p_ooc_cont}`;
+  document.getElementById('kpi-bp').textContent        = k.bp_pct + '%';
+  document.getElementById('kpi-bp-badge').textContent  = `OOC vs In: OR=${k.or_ooc_bp} p=${k.p_ooc_bp}`;
+
+  // Map sub
+  const oocVals = d.center_summary.map(c=>c.ooc_pct);
+  const oocMean = (oocVals.reduce((a,b)=>a+b,0)/oocVals.length).toFixed(1);
+  const oocMin  = Math.min(...oocVals).toFixed(1);
+  const oocMax  = Math.max(...oocVals).toFixed(1);
+  document.getElementById('map-sub').textContent =
+    `สัดส่วน OOC เฉลี่ย = ${oocMean}% | Range ${oocMin}–${oocMax}%`;
+
+  renderMap();
+  renderTopTable(d.center_summary);
+  renderChartCompare(d.group3_summary);
+  renderChartCost(d.group3_summary);
+  renderDistCharts(d.center_summary);
+  populateFilters();
+  renderFindings(k);
+  renderRegBody(k);
+  renderRegTable('tbl-cont', d.regression.continuity_adj, 'OR');
+  renderRegTable('tbl-bp',   d.regression.bp_adj,         'OR');
+  renderRegTable('tbl-cost', d.regression.cost_adj,       'β');
+  document.getElementById('r2-val').textContent = k.r2_cost;
+}
+
+// ════════ MAP (Leaflet) ════════
+let currentMapMode = 'ooc';
+let leafletMap = null;
+let leafletMarkers = [];
+let dvLeafletMap = null;
+let dvMarkers = [];
+
+function switchMap(mode, el) {
+  currentMapMode = mode;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('legend-title').textContent =
+    mode==='ooc'?'% OOC':mode==='cont'?'ความสม่ำเสมอ (%)':'ควบคุม BP (%)';
+  renderMap();
+}
+
+function getColor(v, mode) {
+  if (mode==='ooc') {
+    if(v<20)return'#1a3a5f'; if(v<35)return'#1f6aa5';
+    if(v<50)return'#388bfd'; if(v<70)return'#f59e0b'; return'#f85149';
+  } else if (mode==='cont') {
+    if(v<15)return'#1a3a5f'; if(v<25)return'#1f6aa5';
+    if(v<35)return'#388bfd'; if(v<45)return'#f59e0b'; return'#3fb950';
+  } else {
+    if(v<45)return'#f85149'; if(v<55)return'#f59e0b';
+    if(v<65)return'#1f6aa5'; if(v<75)return'#388bfd'; return'#3fb950';
+  }
+}
+
+function makeCircleMarker(c, val, color, opacity, radius) {
+  const displayHcode = c.display_hcode || ('ศบส.'+parseInt(c.hcode));
+  const popupHtml = `<div class="hc-popup">
+    <h4>${displayHcode} — ${c.hc_name||c.district||''}</h4>
+    <table>
+      <tr><td>เขต</td><td>${c.district||'—'}</td></tr>
+      <tr><td>% OOC</td><td style="color:#f59e0b">${parseFloat(c.ooc_pct).toFixed(1)}%</td></tr>
+      <tr><td>ความสม่ำเสมอ</td><td style="color:#2dd4bf">${parseFloat(c.continuity_pct).toFixed(1)}%</td></tr>
+      <tr><td>ควบคุม BP</td><td style="color:#3fb950">${parseFloat(c.bp_pct).toFixed(1)}%</td></tr>
+      <tr><td>ค่าใช้จ่าย (มัธยฐาน)</td><td>${parseInt(c.cost_median).toLocaleString()} ฿</td></tr>
+    </table>
+  </div>`;
+  return L.circleMarker([c.lat, c.lon], {
+    radius: radius,
+    fillColor: color,
+    color: color,
+    weight: 1,
+    opacity: opacity,
+    fillOpacity: opacity * 0.85
+  }).bindPopup(popupHtml, {maxWidth: 220});
+}
+
+function renderMap() {
+  if (!DATA) return;
+  const centers = DATA.center_summary.filter(c=>c.lat && c.lon);
+  const mapEl = document.getElementById('leaflet-map');
+  if(!mapEl) return;
+
+  if(!leafletMap) {
+    leafletMap = L.map('leaflet-map', {
+      center: [13.756, 100.502], zoom: 11,
+      zoomControl: true, attributionControl: false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      opacity: 0.3
+    }).addTo(leafletMap);
+    // โหลดขอบเขตเขต กทม.
+    fetch('bma_districts_small.geojson')
+      .then(r=>r.json())
+      .then(gj=>{
+        L.geoJSON(gj, {
+          style: {
+            color: '#388bfd',
+            weight: 1,
+            opacity: 0.5,
+            fillColor: '#1f3a5f',
+            fillOpacity: 0.1
+          },
+          onEachFeature: (feature, layer) => {
+            if(feature.properties.district) {
+              layer.bindTooltip(feature.properties.district, {
+                permanent: false,
+                direction: 'center',
+                className: 'district-tooltip'
+              });
+            }
+          }
+        }).addTo(leafletMap);
+      })
+      .catch(()=>console.log('GeoJSON not found'));
+  }
+
+  // ลบ markers เดิม
+  leafletMarkers.forEach(m=>m.remove());
+  leafletMarkers = [];
+
+  centers.forEach(c=>{
+    const val = currentMapMode==='ooc'?c.ooc_pct:currentMapMode==='cont'?c.continuity_pct:c.bp_pct;
+    const color = getColor(parseFloat(val), currentMapMode);
+    const r = 6 + (parseFloat(val)/100)*8;
+    const m = makeCircleMarker(c, val, color, 0.85, r).addTo(leafletMap);
+    leafletMarkers.push(m);
+  });
+}
+
+function renderDVMap(selectedCenters) {
+  if(!DATA) return;
+  const all = DATA.center_summary.filter(c=>c.lat && c.lon);
+  const selSet = new Set(selectedCenters.map(c=>String(c.hcode)));
+  const mapEl = document.getElementById('dv-leaflet-map');
+  if(!mapEl) return;
+
+  if(!dvLeafletMap) {
+    dvLeafletMap = L.map('dv-leaflet-map', {
+      center: [13.756, 100.502], zoom: 11,
+      zoomControl: true, attributionControl: false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      opacity: 0.25
+    }).addTo(dvLeafletMap);
+    // โหลดขอบเขตเขต กทม.
+    fetch('bma_districts_small.geojson')
+      .then(r=>r.json())
+      .then(gj=>{
+        L.geoJSON(gj, {
+          style: {
+            color: '#388bfd',
+            weight: 1,
+            opacity: 0.4,
+            fillColor: '#1f3a5f',
+            fillOpacity: 0.08
+          }
+        }).addTo(dvLeafletMap);
+      })
+      .catch(()=>console.log('GeoJSON not found'));
+  }
+
+  dvMarkers.forEach(m=>m.remove());
+  dvMarkers = [];
+
+  all.forEach(c=>{
+    const isSel = selSet.has(String(c.hcode));
+    const val = parseFloat(c.ooc_pct);
+    const color = isSel ? getColor(val,'ooc') : '#334155';
+    const opacity = isSel ? 0.9 : 0.25;
+    const r = isSel ? 6+(val/100)*8 : 4;
+    const m = makeCircleMarker(c, val, color, opacity, r);
+    if(isSel) m.addTo(dvLeafletMap);
+    else m.addTo(dvLeafletMap);
+    dvMarkers.push(m);
+  });
+
+  // zoom ไปที่ศูนย์ที่เลือก
+  const selCenters = selectedCenters.filter(c=>c.lat&&c.lon);
+  if(selCenters.length>0) {
+    const lats=selCenters.map(c=>c.lat), lons=selCenters.map(c=>c.lon);
+    const bounds=[[Math.min(...lats)-0.02,Math.min(...lons)-0.02],
+                  [Math.max(...lats)+0.02,Math.max(...lons)+0.02]];
+    dvLeafletMap.fitBounds(bounds);
+  }
+
+  const avg=a=>a.length?a.reduce((s,c)=>s+c,0)/a.length:0;
+  document.getElementById('dv-map-sub').textContent=
+    selectedCenters.length+' ศบส. | OOC avg '+avg(selectedCenters.map(c=>parseFloat(c.ooc_pct))).toFixed(1)+'%';
+}
+
+// ════════ TOP 10 TABLE ════════
+function renderTopTable(centers) {
+  const top10=[...centers].sort((a,b)=>b.ooc_pct-a.ooc_pct).slice(0,10);
+  document.getElementById('top-centers').innerHTML=top10.map((c,i)=>{
+    const cls=c.ooc_pct>70?'badge-high':c.ooc_pct>50?'badge-mid':'badge-low';
+    const lbl=c.ooc_pct>70?'สูงมาก':c.ooc_pct>50?'สูง':'ปานกลาง';
+    return`<tr>
+      <td style="color:var(--text2);font-family:var(--mono)">${i+1}</td>
+      <td>ศบส. ${c.hcode}</td>
+      <td><span class="badge ${cls}">${c.ooc_pct.toFixed(1)}%</span></td>
+      <td style="font-family:var(--mono)">${c.continuity_pct.toFixed(1)}%</td>
+      <td style="font-family:var(--mono)">${c.bp_pct.toFixed(1)}%</td>
+      <td><span class="badge ${cls}">${lbl}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ════════ CHART: COMPARE 3 GROUPS ════════
+function renderChartCompare(g3) {
+  const labels = g3.map(g=>g.ooc_group||g.out_of_catchment||'—');
+  if(chartCompare) chartCompare.destroy();
+  chartCompare = new Chart(document.getElementById('chart-compare'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'ความสม่ำเสมอ (%)',data:g3.map(g=>g.continuity_pct),
+         backgroundColor:'rgba(45,212,191,.2)',borderColor:'rgba(45,212,191,.85)',borderWidth:1.5,borderRadius:4},
+        {label:'ควบคุม BP (%)',data:g3.map(g=>g.bp_pct),
+         backgroundColor:'rgba(56,139,253,.2)',borderColor:'rgba(56,139,253,.85)',borderWidth:1.5,borderRadius:4},
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom'},tooltip:tooltipOpts},
+      scales:{x:{grid:gridOpts},y:{grid:gridOpts,min:0,max:100,ticks:{callback:v=>v+'%'}}}}
+  });
+}
+
+// ════════ CHART: COST ════════
+function renderChartCost(g3) {
+  const labels = g3.map(g=>g.ooc_group||g.out_of_catchment||'—');
+  if(chartCost) chartCost.destroy();
+  chartCost = new Chart(document.getElementById('chart-cost'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'มัธยฐานค่าใช้จ่าย (บาท/ปี)',data:g3.map(g=>g.cost_median),
+        backgroundColor:'rgba(245,158,11,.2)',borderColor:'rgba(245,158,11,.85)',borderWidth:1.5,borderRadius:4}]
+    },
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:tooltipOpts},
+      scales:{x:{grid:gridOpts},y:{grid:gridOpts,ticks:{callback:v=>v.toLocaleString()+'฿'}}}}
+  });
+}
+
+// ════════ CHART: DISTRIBUTIONS ════════
+function renderDistCharts(centers) {
+  // Continuity histogram
+  const contVals = centers.map(c=>c.continuity_pct);
+  const bpVals   = centers.map(c=>c.bp_pct);
+  const contMean = (contVals.reduce((a,b)=>a+b,0)/contVals.length).toFixed(1);
+  const bpMean   = (bpVals.reduce((a,b)=>a+b,0)/bpVals.length).toFixed(1);
+  document.getElementById('cont-dist-sub').textContent =
+    `Mean = ${contMean}% | Range ${Math.min(...contVals).toFixed(1)}–${Math.max(...contVals).toFixed(1)}%`;
+  document.getElementById('bp-dist-sub').textContent =
+    `Mean = ${bpMean}% | Range ${Math.min(...bpVals).toFixed(1)}–${Math.max(...bpVals).toFixed(1)}%`;
+
+  function makeHistData(vals, bins) {
+    return bins.slice(0,-1).map((low,i)=>vals.filter(v=>v>=low&&v<bins[i+1]).length);
+  }
+
+  const contBins=[0,10,20,30,40,50,60];
+  const bpBins=[30,40,50,60,70,80,90];
+
+  if(chartContDist) chartContDist.destroy();
+  chartContDist = new Chart(document.getElementById('chart-cont-dist'),{
+    type:'bar',
+    data:{labels:contBins.slice(0,-1).map((v,i)=>`${v}–${contBins[i+1]}%`),
+      datasets:[{data:makeHistData(contVals,contBins),
+        backgroundColor:'rgba(45,212,191,.2)',borderColor:'rgba(45,212,191,.85)',borderWidth:1.5,borderRadius:3}]},
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:tooltipOpts},
+      scales:{x:{grid:gridOpts},y:{grid:gridOpts}}}
+  });
+
+  if(chartBpDist) chartBpDist.destroy();
+  chartBpDist = new Chart(document.getElementById('chart-bp-dist'),{
+    type:'bar',
+    data:{labels:bpBins.slice(0,-1).map((v,i)=>`${v}–${bpBins[i+1]}%`),
+      datasets:[{data:makeHistData(bpVals,bpBins),
+        backgroundColor:'rgba(56,139,253,.2)',borderColor:'rgba(56,139,253,.85)',borderWidth:1.5,borderRadius:3}]},
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:tooltipOpts},
+      scales:{x:{grid:gridOpts},y:{grid:gridOpts}}}
+  });
+
+  if(chartScatter) chartScatter.destroy();
+  chartScatter = new Chart(document.getElementById('chart-scatter'),{
+    type:'scatter',
+    data:{datasets:[{label:'ศบส.',
+      data:centers.map(c=>({x:c.continuity_pct,y:c.bp_pct})),
+      backgroundColor:'rgba(45,212,191,.35)',borderColor:'rgba(45,212,191,.7)',borderWidth:1,pointRadius:5}]},
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:tooltipOpts},
+      scales:{x:{grid:gridOpts,title:{display:true,text:'ความสม่ำเสมอ (%)',color:'#8b949e'}},
+        y:{grid:gridOpts,title:{display:true,text:'ควบคุม BP (%)',color:'#8b949e'}}}}
+  });
+}
+
+// ════════ FINDINGS ════════
+function renderFindings(k) {
+  const pCont = parseFloat(k.p_ooc_cont);
+  const pBp   = parseFloat(k.p_ooc_bp);
+  const pCost = parseFloat(k.p_ooc_cost);
+  const allNS = pCont>=0.05 && pBp>=0.05 && pCost>=0.05;
+
+  document.getElementById('findings-body').innerHTML = `
+    <div class="finding ${allNS?'':'warn'}">
+      <strong>${allNS?'ไม่มีผลต่างอย่างมีนัยสำคัญ:':'พบความสัมพันธ์บางประการ:'}</strong>
+      สถานะประชากรแฝงกับความสม่ำเสมอ (Adj OR = ${k.or_ooc_cont}, p = ${k.p_ooc_cont}),
+      ควบคุม BP (Adj OR = ${k.or_ooc_bp}, p = ${k.p_ooc_bp}),
+      ค่าใช้จ่าย (β = ${k.beta_ooc_cost}, p = ${k.p_ooc_cost})
+    </div>
+    <div class="finding warn">
+      <strong>${k.ooc_pct}% ของผู้รับบริการ</strong>
+      คือประชากรแฝง (${k.ooc_n.toLocaleString()} ราย) สะท้อนภาระจริงสูงกว่าทะเบียนบ้าน
+      และ ICC = ${k.icc_cont} ชี้ว่าปัจจัยระดับหน่วยบริการมีบทบาทสำคัญ
+    </div>
+    <div class="finding info">
+      <strong>Multilevel model:</strong> OOC มีความสม่ำเสมอลดลง (OR = ${k.or_ml_cont})
+      เมื่อควบคุม ICC ระหว่างศูนย์ สะท้อนความแตกต่างระดับหน่วยบริการ
+    </div>
+    <div style="margin-top:16px;">
+      <div class="section-title">ข้อเสนอแนะเชิงนโยบาย</div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>พัฒนาระบบติดตามเชิงรุก</span><span>ลำดับ 1</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--teal)"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>วางแผนบริการตามภาระจริง (ไม่ใช่ทะเบียนบ้าน)</span><span>ลำดับ 2</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:80%;background:var(--blue)"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>จัดสรรทรัพยากรตามผู้รับบริการจริง</span><span>ลำดับ 3</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:70%;background:var(--amber)"></div></div>
+      </div>
+    </div>`;
+}
+
+// ════════ REGRESSION BODY ════════
+function renderRegBody(k) {
+  document.getElementById('reg-body').innerHTML = `
+    <div class="section-title">ผลลัพธ์ที่ 1: ความสม่ำเสมอ</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-box-label">OOC vs In-Catchment</div>
+        <div class="stat-box-val" style="color:${parseFloat(k.p_ooc_cont)<0.05?'var(--teal)':'var(--text2)'}">${k.or_ooc_cont}</div>
+        <div class="stat-box-unit">p = ${k.p_ooc_cont} | AUC = ${k.auc_cont}</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">Multilevel (ICC=${k.icc_cont})</div>
+        <div class="stat-box-val" style="color:var(--teal)">${k.or_ml_cont}</div>
+        <div class="stat-box-unit">p &lt; 0.05 (sensitivity)</div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:4px;">ผลลัพธ์ที่ 2: ควบคุม BP</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-box-label">OOC vs In-Catchment</div>
+        <div class="stat-box-val" style="color:${parseFloat(k.p_ooc_bp)<0.05?'var(--teal)':'var(--text2)'}">${k.or_ooc_bp}</div>
+        <div class="stat-box-unit">p = ${k.p_ooc_bp} | AUC = ${k.auc_bp}</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">ความสม่ำเสมอ → BP</div>
+        <div class="stat-box-val" style="color:var(--teal)">1.17</div>
+        <div class="stat-box-unit">95% CI: 1.07–1.27 | p &lt; 0.001 ***</div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:4px;">ผลลัพธ์ที่ 3: ค่าใช้จ่าย</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-box-label">OOC vs In-Catchment (β)</div>
+        <div class="stat-box-val" style="color:${parseFloat(k.p_ooc_cost)<0.05?'var(--teal)':'var(--text2)'}">${k.beta_ooc_cost}</div>
+        <div class="stat-box-unit">p = ${k.p_ooc_cost}</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">R² / Adj R²</div>
+        <div class="stat-box-val" style="color:var(--blue)">${k.r2_cost}</div>
+        <div class="stat-box-unit">Adj R² = ${k.adjr2_cost}</div>
+      </div>
+    </div>`;
+}
+
+// ════════ REGRESSION TABLE ════════
+function renderRegTable(id, rows, estLabel) {
+  if(!rows||!rows.length) return;
+  const t=document.getElementById(id);
+  const container=t.parentElement;
+
+  // ตัวแปรหลักที่ผู้บริหารสนใจ
+  const KEY_VARS=['out_of_catchment','Out-of-Catchment','continuity_flag','continuity_flag1','age','sex_bin'];
+  const keyRows=rows.filter(r=>KEY_VARS.some(k=>r.variable.includes(k)));
+  const otherRows=rows.filter(r=>!KEY_VARS.some(k=>r.variable.includes(k)) && !r.variable.includes('(Intercept)'));
+
+  const varLabel=(v)=>{
+    if(v.includes('Out-of-Catchment')||v.includes('out_of_catchment')) return 'OOC vs In-Catchment';
+    if(v.includes('continuity_flag')) return 'ความสม่ำเสมอ';
+    if(v==='age') return 'อายุ';
+    if(v.includes('sex_bin')) return 'เพศชาย';
+    return v;
+  };
+
+  const rowHtml=(r,highlight)=>{
+    const pVal=parseFloat(r.p_value);
+    const pCol=pVal<0.05?'color:var(--red)':'color:var(--text2)';
+    const est=estLabel==='OR'?r.estimate:r.estimate;
+    return`<tr style="${highlight?'background:rgba(56,139,253,.08)':''}">
+      <td style="font-weight:${highlight?'600':'400'}">${varLabel(r.variable)}</td>
+      <td style="font-family:var(--mono);color:${highlight?'var(--teal)':'var(--text)'}">${est}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:var(--text2)">${r.ci_lower}–${r.ci_upper}</td>
+      <td style="font-family:var(--mono);${pCol}">${r.p_value}</td>
+      <td style="color:var(--red);font-family:var(--mono)">${r.sig}</td>
+    </tr>`;
+  };
+
+  // สร้าง unique id สำหรับ toggle
+  const toggleId='toggle-'+id;
+
+  t.innerHTML=`<thead><tr>
+    <th style="text-align:left">ตัวแปร</th>
+    <th>${estLabel}</th><th style="font-size:10px">95% CI</th><th>p</th><th>sig</th>
+  </tr></thead><tbody>
+    ${keyRows.map(r=>rowHtml(r,r.variable.includes('Out-of-Catchment')||r.variable.includes('out_of_catchment'))).join('')}
+    <tr id="${toggleId}-rows" style="display:none">
+      <td colspan="5" style="padding:0">
+        <table style="width:100%;border-collapse:collapse">
+          ${otherRows.map(r=>rowHtml(r,false)).join('')}
+        </table>
+      </td>
+    </tr>
+  </tbody>`;
+
+  // เพิ่ม/แทนที่ปุ่ม toggle
+  let btn=container.querySelector('.toggle-btn');
+  if(!btn){
+    btn=document.createElement('button');
+    btn.className='btn-reset toggle-btn';
+    btn.style.cssText='margin-top:8px;width:100%;font-size:11px;padding:5px;';
+    container.appendChild(btn);
+  }
+  btn.textContent='+ ดู covariates ทั้งหมด ('+otherRows.length+' ตัวแปร)';
+  btn.onclick=function(){
+    const tr=document.getElementById(toggleId+'-rows');
+    const show=tr.style.display==='none';
+    tr.style.display=show?'table-row':'none';
+    btn.textContent=(show?'− ซ่อน':'+ ดู')+' covariates ทั้งหมด ('+otherRows.length+' ตัวแปร)';
+  };
+}
+
+// ════════ FILTER DROPDOWNS ════════
+function populateFilters() {
+  if(!DATA) return;
+  const cs=DATA.center_summary;
+  const groups=[...new Set(cs.map(c=>c.district_group).filter(Boolean))].sort();
+  const selG=document.getElementById('sel-group');
+  selG.innerHTML='<option value="all">ทุกกลุ่มเขต</option>';
+  groups.forEach(g=>{const o=document.createElement('option');o.value=g;o.textContent=g;selG.appendChild(o);});
+  rebuildDistricts('all'); rebuildHcodes('all','all');
+}
+function rebuildDistricts(group) {
+  const cs=DATA.center_summary;
+  const f=group==='all'?cs:cs.filter(c=>c.district_group===group);
+  const ds=[...new Set(f.map(c=>c.district).filter(Boolean))].sort();
+  const el=document.getElementById('sel-district');
+  el.innerHTML='<option value="all">ทุกเขต</option>';
+  ds.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d;el.appendChild(o);});
+}
+function rebuildHcodes(group,district) {
+  let f=DATA.center_summary;
+  if(group!=='all')    f=f.filter(c=>c.district_group===group);
+  if(district!=='all') f=f.filter(c=>c.district===district);
+  const el=document.getElementById('sel-hcode');
+  el.innerHTML='<option value="all">ทุก ศบส.</option>';
+  f.forEach(c=>{const o=document.createElement('option');o.value=c.hcode;o.textContent=c.hcode;el.appendChild(o);});
+}
+function onGroupChange() {
+  const g=document.getElementById('sel-group').value;
+  rebuildDistricts(g);
+  document.getElementById('sel-district').value='all';
+  document.getElementById('sel-hcode').value='all';
+  rebuildHcodes(g,'all'); applyFilter();
+}
+function onDistrictChange() {
+  const g=document.getElementById('sel-group').value;
+  const d=document.getElementById('sel-district').value;
+  rebuildHcodes(g,d);
+  document.getElementById('sel-hcode').value='all';
+  applyFilter();
+}
+
+// ════════ FILTER ════════
+let dvChart=null;
+function cAvg(arr,key){return arr.length?arr.reduce((s,c)=>s+(parseFloat(c[key])||0),0)/arr.length:0;}
+function badge(val,bench,higherBad){
+  const d=val-bench, hi=d>0;
+  const bad=higherBad?hi:!hi;
+  const col=bad?'var(--red)':'var(--green)';
+  const bg=bad?'var(--red-dim)':'var(--green-dim)';
+  if(Math.abs(d)<0.5) return '<span class="kpi-change ns">= กทม. '+bench.toFixed(1)+'%</span>';
+  return '<span class="kpi-change" style="background:'+bg+';color:'+col+'">'+(hi?'↑':'↓')+' '+(d>0?'+':'')+d.toFixed(1)+'% vs กทม.</span>';
+}
+function applyFilter() {
+  if(!DATA) return;
+  const group   =document.getElementById('sel-group').value;
+  const district=document.getElementById('sel-district').value;
+  const hcode   =document.getElementById('sel-hcode').value;
+  const ooc     =document.getElementById('sel-ooc').value;
+  const isFiltered=group!=='all'||district!=='all'||hcode!=='all';
+
+  // กรอง center_summary
+  let centers=DATA.center_summary;
+  if(group!=='all')    centers=centers.filter(c=>c.district_group===group);
+  if(district!=='all') centers=centers.filter(c=>c.district===district);
+  if(hcode!=='all')    centers=centers.filter(c=>c.hcode===hcode);
+
+  // status bar
+  const st=document.getElementById('fs');
+  if(isFiltered && centers.length>0){
+    let lbl=hcode!=='all'?hcode:district!=='all'?'เขต'+district+' ('+centers.length+' ศบส.)':group!=='all'?group+' ('+centers.length+' ศบส.)':'';
+    const om={in:'In-Catchment',ooc_bkk:'OOC-Bangkok',ooc_out:'OOC-Outside'};
+    if(ooc!=='all') lbl+=' | กลุ่ม: '+om[ooc];
+    st.textContent='● กำลังแสดง: '+lbl;
+    st.style.display='block';
+  } else { st.style.display='none'; }
+
+  // แสดง/ซ่อน district-view
+  const dv=document.getElementById('district-view');
+  if(isFiltered && centers.length>0){
+    dv.style.display='block';
+    renderDV(centers, district, hcode);
+  } else {
+    dv.style.display='none';
+    renderAll(DATA);
+    return;
+  }
+
+  // OOC filter บน KPI หลัก
+  if(ooc!=='all'){
+    const om={in:'In-Catchment',ooc_bkk:'OOC-Bangkok',ooc_out:'OOC-Outside'};
+    const g=DATA.group3_summary.find(x=>(x.ooc_group||x.out_of_catchment)===om[ooc]);
+    if(g){
+      document.getElementById('kpi-total').textContent=g.n.toLocaleString();
+      document.getElementById('kpi-cont').textContent=g.continuity_pct+'%';
+      document.getElementById('kpi-bp').textContent=g.bp_pct+'%';
+    }
+  }
+}
+
+function renderDV(centers, district, hcode) {
+  const k=DATA.kpi;
+  const n_tot=centers.reduce((s,c)=>s+(c.n||0),0);
+  const ooc_p =cAvg(centers,'ooc_pct');
+  const cont_p=cAvg(centers,'continuity_pct');
+  const bp_p  =cAvg(centers,'bp_pct');
+
+  // ── KPI 4 กล่อง ──
+  document.getElementById('dv-kpi').innerHTML=`
+    <div class="kpi blue" style="border-top:2px solid var(--blue)">
+      <div class="kpi-label">ผู้รับบริการ</div>
+      <div class="kpi-value" style="color:var(--blue)">${n_tot.toLocaleString()}</div>
+      <div class="kpi-sub">${centers.length} ศบส. | กทม.: ${k.total_n.toLocaleString()}</div>
+    </div>
+    <div class="kpi teal" style="border-top:2px solid var(--teal)">
+      <div class="kpi-label">สัดส่วนประชากรแฝง</div>
+      <div class="kpi-value" style="color:var(--teal)">${ooc_p.toFixed(1)}%</div>
+      ${badge(ooc_p,k.ooc_pct,true)}
+      <div class="kpi-sub" style="margin-top:4px">กทม.: ${k.ooc_pct}%</div>
+    </div>
+    <div class="kpi amber" style="border-top:2px solid var(--amber)">
+      <div class="kpi-label">ความสม่ำเสมอ</div>
+      <div class="kpi-value" style="color:var(--amber)">${cont_p.toFixed(1)}%</div>
+      ${badge(cont_p,k.continuity_pct,false)}
+      <div class="kpi-sub" style="margin-top:4px">กทม.: ${k.continuity_pct}%</div>
+    </div>
+    <div class="kpi green" style="border-top:2px solid var(--green)">
+      <div class="kpi-label">ควบคุม BP ได้</div>
+      <div class="kpi-value" style="color:var(--green)">${bp_p.toFixed(1)}%</div>
+      ${badge(bp_p,k.bp_pct,false)}
+      <div class="kpi-sub" style="margin-top:4px">กทม.: ${k.bp_pct}%</div>
+    </div>`;
+
+  // ── ตาราง 3 กลุ่ม (ใช้ center_group3_summary ถ้ามี) ──
+  // กรอง center_group3_summary ตาม centers ที่เลือก
+  let g3data = null;
+  const selHcodes = new Set(centers.map(c=>String(c.hcode)));
+  if(DATA.center_group3_summary && DATA.center_group3_summary.length>0) {
+    const filtered = DATA.center_group3_summary.filter(r=>selHcodes.has(String(r.hcode)));
+    if(filtered.length>0) {
+      // รวม 3 กลุ่มใน centers ที่เลือก
+      const groups = ['In-Catchment','OOC-Bangkok','OOC-Outside'];
+      g3data = groups.map(grp=>{
+        const rows = filtered.filter(r=>r.ooc_group===grp);
+        if(!rows.length) return {ooc_group:grp,n:0,continuity_pct:0,bp_pct:0,cost_median:0};
+        const nTot = rows.reduce((s,r)=>s+(r.n||0),0);
+        return {
+          ooc_group: grp,
+          n: nTot,
+          continuity_pct: (rows.reduce((s,r)=>s+(r.continuity_pct||0)*r.n,0)/nTot).toFixed(1),
+          bp_pct:          (rows.reduce((s,r)=>s+(r.bp_pct||0)*r.n,0)/nTot).toFixed(1),
+          cost_median:     Math.round(rows.reduce((s,r)=>s+(r.cost_median||0),0)/rows.length),
+        };
+      });
+    }
+  }
+  if(!g3data) g3data = DATA.group3_summary; // fallback
+
+  const g3html=`
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr>
+        <th></th>
+        <th style="text-align:center;color:var(--blue);border-bottom:2px solid var(--blue)">In-Catchment</th>
+        <th style="text-align:center;color:var(--amber);border-bottom:2px solid var(--amber)">OOC-Bangkok</th>
+        <th style="text-align:center;color:var(--red);border-bottom:2px solid var(--red)">OOC-Outside</th>
+      </tr></thead>
+      <tbody>
+        ${['n','continuity_pct','bp_pct','cost_median'].map((key,i)=>{
+          const labels=['จำนวน (ราย)','ความสม่ำเสมอ','ควบคุม BP','ค่าใช้จ่าย (บาท)'];
+          const fmt=(v,k2)=>k2==='n'?parseInt(v).toLocaleString():k2==='cost_median'?parseInt(v).toLocaleString()+'฿':parseFloat(v).toFixed(1)+'%';
+          const colors=['var(--text)','var(--teal)','var(--green)','var(--text)'];
+          return '<tr><td style="color:var(--text2)">'+labels[i]+'</td>'+
+            g3data.map(g=>'<td style="text-align:center;color:'+colors[i]+';font-family:var(--mono)">'+fmt(g[key],key)+'</td>').join('')+
+            '</tr>';
+        }).join('')}
+      </tbody>
+    </table>
+    <div style="margin-top:10px;padding:8px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2);">
+      ค่าเฉลี่ย กทม.: ความสม่ำเสมอ ${k.continuity_pct}% | ควบคุม BP ${k.bp_pct}% | ค่าใช้จ่าย ${k.cost_median_all?k.cost_median_all.toLocaleString():'—'} บาท
+    </div>`;
+  document.getElementById('dv-group3').innerHTML=g3html;
+  document.getElementById('dv-sub').textContent='ปีงบประมาณ '+k.fiscal_year+' | เปรียบเทียบ 3 กลุ่มในเขตที่เลือก';
+
+  // ── แผนที่ highlight ──
+  renderDVMap(centers);
+
+  // ── กราฟแท่ง ──
+  const labels=centers.map(c=>c.hcode.replace('ศบส.','#'));
+  const contData=centers.map(c=>c.continuity_pct);
+  const bpData=centers.map(c=>c.bp_pct);
+  if(dvChart) dvChart.destroy();
+  dvChart=new Chart(document.getElementById('dv-chart'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'ความสม่ำเสมอ (%)',data:contData,backgroundColor:'rgba(45,212,191,.3)',borderColor:'rgba(45,212,191,.9)',borderWidth:1.5,borderRadius:3},
+      {label:'ควบคุม BP (%)',data:bpData,backgroundColor:'rgba(56,139,253,.3)',borderColor:'rgba(56,139,253,.9)',borderWidth:1.5,borderRadius:3},
+    ]},
+    options:{responsive:true,
+      plugins:{
+        legend:{position:'bottom',labels:{color:'#8b949e',font:{size:11}}},
+        tooltip:{backgroundColor:'#21262d',borderColor:'#30363d',borderWidth:1,titleColor:'#e6edf3',bodyColor:'#8b949e'},
+        annotation:{annotations:{
+          contLine:{type:'line',yMin:k.continuity_pct,yMax:k.continuity_pct,borderColor:'rgba(45,212,191,.5)',borderWidth:1,borderDash:[4,4]},
+          bpLine:{type:'line',yMin:k.bp_pct,yMax:k.bp_pct,borderColor:'rgba(56,139,253,.5)',borderWidth:1,borderDash:[4,4]},
+        }}
+      },
+      scales:{
+        x:{grid:{color:'rgba(48,54,61,.6)'},ticks:{color:'#8b949e',font:{size:10}}},
+        y:{grid:{color:'rgba(48,54,61,.6)'},min:0,max:100,ticks:{color:'#8b949e',callback:v=>v+'%'}}
+      }
+    }
+  });
+
+  // ── ตารางรายศบส. ──
+  document.getElementById('dv-hc-title').textContent='ตารางรายศบส. ('+centers.length+' แห่ง)';
+  document.getElementById('dv-tbody').innerHTML=centers.map(c=>{
+    const ob=parseFloat(c.ooc_pct)>k.ooc_pct;
+    const cb=parseFloat(c.continuity_pct)<k.continuity_pct;
+    const bb=parseFloat(c.bp_pct)<k.bp_pct;
+    const tags=[(ob?'<span class="badge badge-high">OOC↑</span>':''),
+                (cb?'<span class="badge badge-mid">สม↓</span>':''),
+                (bb?'<span class="badge badge-mid">BP↓</span>':'')].filter(Boolean).join(' ');
+    const displayHcode = c.display_hcode || ('ศบส.'+parseInt(c.hcode));
+    return '<tr>'+
+      '<td style="font-family:var(--mono);font-weight:600">'+displayHcode+'</td>'+
+      '<td style="font-family:var(--mono)">'+parseInt(c.n).toLocaleString()+'</td>'+
+      '<td style="font-family:var(--mono);color:var(--amber)">'+parseFloat(c.ooc_pct).toFixed(1)+'%</td>'+
+      '<td style="font-family:var(--mono);color:'+(cb?'var(--red)':'var(--teal)')+'">'+parseFloat(c.continuity_pct).toFixed(1)+'%</td>'+
+      '<td style="font-family:var(--mono);color:'+(bb?'var(--red)':'var(--green)')+'">'+parseFloat(c.bp_pct).toFixed(1)+'%</td>'+
+      '<td style="font-family:var(--mono)">'+parseInt(c.cost_median).toLocaleString()+'฿</td>'+
+      '<td>'+(tags||'<span class="badge badge-teal">ปกติ</span>')+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+// renderDVMap moved to Leaflet version above
+
+function resetFilter() {
+  ['sel-group','sel-district','sel-hcode','sel-ooc'].forEach(id=>document.getElementById(id).value='all');
+  document.getElementById('fs').style.display='none';
+  document.getElementById('district-view').style.display='none';
+  if(DATA){ rebuildDistricts('all'); rebuildHcodes('all','all'); renderAll(DATA); }
+}
+
+// ════════ DEMO DATA ════════
+function getDemoData() {
+  const dGroups=['กรุงเทพกลาง','กรุงเทพเหนือ','กรุงเทพใต้','กรุงเทพตะวันออก','กรุงธนเหนือ','กรุงธนใต้'];
+  const dNames=['พระนคร','ป้อมปราบ','สัมพันธวงศ์','บางรัก','สาทร','บางคอแหลม','ดุสิต','บางซื่อ','จตุจักร','หลักสี่','ดอนเมือง','สายไหม','บางเขน','ลาดพร้าว','ห้วยขวาง','วังทองหลาง','บึงกุ่ม','คันนายาว','ปทุมวัน','บางกะปิ','สวนหลวง','ประเวศ','พระโขนง','บางนา','ลาดกระบัง','มีนบุรี','หนองจอก','คลองสาน','ธนบุรี','บางกอกใหญ่','บางกอกน้อย','ตลิ่งชัน','ทวีวัฒนา','ราษฎร์บูรณะ','ทุ่งครุ','จอมทอง','บางขุนเทียน','บางบอน','ภาษีเจริญ','หนองแขม'];
+  const centers=Array.from({length:69},(_,i)=>({
+    hcode:'ศบส.'+(i+1),
+    n:Math.floor(400+Math.random()*800),
+    ooc_pct:parseFloat((Math.min(100,Math.max(9.7,25+(Math.sin(i*1.3)*30)+(i%7)*4))).toFixed(2)),
+    continuity_pct:parseFloat((Math.min(58,Math.max(2.2,20+Math.sin(i*1.1)*18+Math.random()*8))).toFixed(2)),
+    bp_pct:parseFloat((Math.min(83,Math.max(34,55+Math.sin(i*0.9)*15+Math.random()*6))).toFixed(2)),
+    cost_median:Math.floor(900+Math.random()*800),
+    district_group: dGroups[i%6],
+    district: dNames[i%dNames.length],
+  }));
+  const fakeRows=(label)=>([
+    {variable:label,estimate:0.95,ci_lower:0.86,ci_upper:1.05,p_value:0.331,sig:''},
+    {variable:'age',estimate:0.98,ci_lower:0.97,ci_upper:0.99,p_value:0.001,sig:'***'},
+    {variable:'sex_bin (ชาย)',estimate:0.91,ci_lower:0.85,ci_upper:0.98,p_value:0.011,sig:'*'},
+    {variable:'comorbidity_count',estimate:1.05,ci_lower:1.02,ci_upper:1.09,p_value:0.003,sig:'**'},
+  ]);
+  return {
+    kpi:{total_n:42288,n_centers:69,ooc_n:12314,ooc_pct:29.1,continuity_pct:25.4,
+      bp_pct:59.0,cost_median_all:1220,or_ooc_cont:0.95,p_ooc_cont:0.331,
+      or_ooc_bp:0.97,p_ooc_bp:0.472,beta_ooc_cost:-0.017,p_ooc_cost:0.334,
+      icc_cont:0.132,or_ml_cont:0.934,auc_cont:0.548,auc_bp:0.561,
+      r2_cost:0.639,adjr2_cost:0.638,fiscal_year:'2567',exported_at:'demo'},
+    group_summary:[
+      {out_of_catchment:'In-Catchment',n:29974,continuity_pct:26.2,bp_pct:59.4,cost_median:1250,age_mean:71.2},
+      {out_of_catchment:'Out-of-Catchment',n:12314,continuity_pct:24.1,bp_pct:58.6,cost_median:1180,age_mean:70.8},
+    ],
+    group3_summary:[
+      {ooc_group:'In-Catchment',n:29974,continuity_pct:26.2,bp_pct:59.4,cost_median:1250},
+      {ooc_group:'OOC-Bangkok',n:8980,continuity_pct:24.1,bp_pct:58.2,cost_median:1180},
+      {ooc_group:'OOC-Outside',n:3334,continuity_pct:22.8,bp_pct:58.9,cost_median:1090},
+    ],
+    center_summary:centers,
+    regression:{
+      continuity_adj:fakeRows('out_of_catchmentOut-of-Catchment'),
+      bp_adj:fakeRows('out_of_catchmentOut-of-Catchment'),
+      cost_adj:[
+        {variable:'out_of_catchmentOut-of-Catchment',estimate:-0.017,ci_lower:-0.051,ci_upper:0.018,p_value:0.334,sig:'',pct_change:-1.7},
+        {variable:'continuity_flag1',estimate:0.413,ci_lower:0.334,ci_upper:0.492,p_value:0.0001,sig:'***',pct_change:51.1},
+        {variable:'n_visits',estimate:0.241,ci_lower:0.228,ci_upper:0.254,p_value:0.0001,sig:'***',pct_change:27.3},
+      ],
+    }
+  };
+}
+
+// ════════ START ════════
+loadData();
+</script>
+</body>
+</html>
