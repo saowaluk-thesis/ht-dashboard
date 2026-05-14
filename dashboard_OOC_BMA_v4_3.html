@@ -752,7 +752,7 @@ function renderTopTable(centers) {
     const lbl=c.ooc_pct>70?'สูงมาก':c.ooc_pct>50?'สูง':'ปานกลาง';
     return`<tr>
       <td style="color:var(--text2);font-family:var(--mono)">${i+1}</td>
-      <td>${c.hcode}</td>
+      <td>ศบส.${c.hcode}</td>
       <td><span class="badge ${cls}">${c.ooc_pct.toFixed(1)}%</span></td>
       <td style="font-family:var(--mono)">${c.continuity_pct.toFixed(1)}%</td>
       <td style="font-family:var(--mono)">${c.bp_pct.toFixed(1)}%</td>
