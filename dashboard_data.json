@@ -52,7 +52,7 @@
     "n_centers_high_ooc": 10,
     "n_centers_mid_ooc": 24,
     "n_centers_low_ooc": 35,
-    "exported_at": "2026-05-14 19:54"
+    "exported_at": "2026-05-14 20:20"
   },
   "group_summary": [
     {
@@ -105,7 +105,7 @@
   ],
   "center_summary": [
     {
-      "hcode": "ศบส.1",
+      "hcode": "1",
       "n": 295,
       "ooc_pct": 52.2,
       "ooc_bkk_pct": 45.76,
@@ -121,7 +121,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.10",
+      "hcode": "10",
       "n": 45,
       "ooc_pct": 40,
       "ooc_bkk_pct": 13.33,
@@ -137,7 +137,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.11",
+      "hcode": "11",
       "n": 348,
       "ooc_pct": 30.75,
       "ooc_bkk_pct": 22.99,
@@ -153,7 +153,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.12",
+      "hcode": "12",
       "n": 151,
       "ooc_pct": 15.23,
       "ooc_bkk_pct": 13.25,
@@ -169,7 +169,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.13",
+      "hcode": "13",
       "n": 105,
       "ooc_pct": 40.95,
       "ooc_bkk_pct": 31.43,
@@ -185,7 +185,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.14",
+      "hcode": "14",
       "n": 476,
       "ooc_pct": 50.21,
       "ooc_bkk_pct": 45.17,
@@ -201,7 +201,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.15",
+      "hcode": "15",
       "n": 955,
       "ooc_pct": 38.32,
       "ooc_bkk_pct": 36.75,
@@ -217,7 +217,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.16",
+      "hcode": "16",
       "n": 618,
       "ooc_pct": 20.39,
       "ooc_bkk_pct": 13.92,
@@ -233,7 +233,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.17",
+      "hcode": "17",
       "n": 258,
       "ooc_pct": 27.91,
       "ooc_bkk_pct": 15.89,
@@ -249,7 +249,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.18",
+      "hcode": "18",
       "n": 374,
       "ooc_pct": 17.65,
       "ooc_bkk_pct": 14.44,
@@ -265,7 +265,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.19",
+      "hcode": "19",
       "n": 1337,
       "ooc_pct": 12.34,
       "ooc_bkk_pct": 4.19,
@@ -281,7 +281,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.2",
+      "hcode": "2",
       "n": 192,
       "ooc_pct": 33.85,
       "ooc_bkk_pct": 18.75,
@@ -297,7 +297,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.20",
+      "hcode": "20",
       "n": 110,
       "ooc_pct": 54.55,
       "ooc_bkk_pct": 32.73,
@@ -313,7 +313,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.21",
+      "hcode": "21",
       "n": 130,
       "ooc_pct": 72.31,
       "ooc_bkk_pct": 50,
@@ -329,7 +329,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.22",
+      "hcode": "22",
       "n": 237,
       "ooc_pct": 72.57,
       "ooc_bkk_pct": 64.56,
@@ -345,7 +345,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.23",
+      "hcode": "23",
       "n": 233,
       "ooc_pct": 37.34,
       "ooc_bkk_pct": 30.47,
@@ -361,7 +361,7 @@
       "district_group": "กรุงธนเหนือ"
     },
     {
-      "hcode": "ศบส.24",
+      "hcode": "24",
       "n": 483,
       "ooc_pct": 42.44,
       "ooc_bkk_pct": 29.4,
@@ -377,7 +377,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.25",
+      "hcode": "25",
       "n": 875,
       "ooc_pct": 22.06,
       "ooc_bkk_pct": 13.94,
@@ -393,7 +393,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.26",
+      "hcode": "26",
       "n": 343,
       "ooc_pct": 47.52,
       "ooc_bkk_pct": 44.31,
@@ -409,7 +409,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.27",
+      "hcode": "27",
       "n": 1310,
       "ooc_pct": 33.13,
       "ooc_bkk_pct": 30.23,
@@ -425,7 +425,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.28",
+      "hcode": "28",
       "n": 361,
       "ooc_pct": 30.47,
       "ooc_bkk_pct": 19.11,
@@ -441,7 +441,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.29",
+      "hcode": "29",
       "n": 2137,
       "ooc_pct": 33.08,
       "ooc_bkk_pct": 30.37,
@@ -457,7 +457,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.3",
+      "hcode": "3",
       "n": 417,
       "ooc_pct": 14.63,
       "ooc_bkk_pct": 8.15,
@@ -473,7 +473,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.30",
+      "hcode": "30",
       "n": 249,
       "ooc_pct": 43.37,
       "ooc_bkk_pct": 37.35,
@@ -489,7 +489,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.31",
+      "hcode": "31",
       "n": 1218,
       "ooc_pct": 17.08,
       "ooc_bkk_pct": 9.03,
@@ -505,7 +505,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.32",
+      "hcode": "32",
       "n": 165,
       "ooc_pct": 75.15,
       "ooc_bkk_pct": 57.58,
@@ -521,7 +521,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.33",
+      "hcode": "33",
       "n": 1073,
       "ooc_pct": 30.2,
       "ooc_bkk_pct": 25.16,
@@ -537,7 +537,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.34",
+      "hcode": "34",
       "n": 658,
       "ooc_pct": 21.28,
       "ooc_bkk_pct": 14.13,
@@ -553,7 +553,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.35",
+      "hcode": "35",
       "n": 914,
       "ooc_pct": 11.93,
       "ooc_bkk_pct": 11.6,
@@ -569,7 +569,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.36",
+      "hcode": "36",
       "n": 673,
       "ooc_pct": 32.54,
       "ooc_bkk_pct": 25.56,
@@ -585,7 +585,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.37",
+      "hcode": "37",
       "n": 146,
       "ooc_pct": 47.95,
       "ooc_bkk_pct": 36.99,
@@ -601,7 +601,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.38",
+      "hcode": "38",
       "n": 782,
       "ooc_pct": 26.09,
       "ooc_bkk_pct": 13.94,
@@ -617,7 +617,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.39",
+      "hcode": "39",
       "n": 808,
       "ooc_pct": 35.02,
       "ooc_bkk_pct": 11.39,
@@ -633,7 +633,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.4",
+      "hcode": "4",
       "n": 1019,
       "ooc_pct": 15.7,
       "ooc_bkk_pct": 7.46,
@@ -649,7 +649,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.40",
+      "hcode": "40",
       "n": 1079,
       "ooc_pct": 38.46,
       "ooc_bkk_pct": 32.53,
@@ -665,7 +665,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.41",
+      "hcode": "41",
       "n": 72,
       "ooc_pct": 38.89,
       "ooc_bkk_pct": 13.89,
@@ -681,7 +681,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.42",
+      "hcode": "42",
       "n": 1669,
       "ooc_pct": 21.75,
       "ooc_bkk_pct": 11.56,
@@ -697,7 +697,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.43",
+      "hcode": "43",
       "n": 880,
       "ooc_pct": 38.64,
       "ooc_bkk_pct": 32.95,
@@ -713,7 +713,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.44",
+      "hcode": "44",
       "n": 882,
       "ooc_pct": 3.97,
       "ooc_bkk_pct": 2.38,
@@ -729,7 +729,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.45",
+      "hcode": "45",
       "n": 895,
       "ooc_pct": 17.09,
       "ooc_bkk_pct": 8.27,
@@ -745,7 +745,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.46",
+      "hcode": "46",
       "n": 492,
       "ooc_pct": 13.41,
       "ooc_bkk_pct": 10.57,
@@ -761,7 +761,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.47",
+      "hcode": "47",
       "n": 343,
       "ooc_pct": 26.53,
       "ooc_bkk_pct": 23.91,
@@ -777,7 +777,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.48",
+      "hcode": "48",
       "n": 199,
       "ooc_pct": 59.3,
       "ooc_bkk_pct": 44.72,
@@ -793,7 +793,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.49",
+      "hcode": "49",
       "n": 739,
       "ooc_pct": 13.8,
       "ooc_bkk_pct": 6.9,
@@ -809,7 +809,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.5",
+      "hcode": "5",
       "n": 446,
       "ooc_pct": 53.14,
       "ooc_bkk_pct": 37.22,
@@ -825,7 +825,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.50",
+      "hcode": "50",
       "n": 744,
       "ooc_pct": 28.76,
       "ooc_bkk_pct": 27.82,
@@ -841,7 +841,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.51",
+      "hcode": "51",
       "n": 215,
       "ooc_pct": 14.42,
       "ooc_bkk_pct": 8.37,
@@ -857,7 +857,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.52",
+      "hcode": "52",
       "n": 821,
       "ooc_pct": 14.13,
       "ooc_bkk_pct": 10.48,
@@ -873,7 +873,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.53",
+      "hcode": "53",
       "n": 575,
       "ooc_pct": 16.52,
       "ooc_bkk_pct": 11.65,
@@ -889,7 +889,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.54",
+      "hcode": "54",
       "n": 950,
       "ooc_pct": 17.89,
       "ooc_bkk_pct": 14.42,
@@ -905,7 +905,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.55",
+      "hcode": "55",
       "n": 321,
       "ooc_pct": 19.31,
       "ooc_bkk_pct": 13.4,
@@ -921,7 +921,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.56",
+      "hcode": "56",
       "n": 1176,
       "ooc_pct": 34.18,
       "ooc_bkk_pct": 29.93,
@@ -937,7 +937,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.57",
+      "hcode": "57",
       "n": 774,
       "ooc_pct": 23.64,
       "ooc_bkk_pct": 9.17,
@@ -953,7 +953,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.58",
+      "hcode": "58",
       "n": 723,
       "ooc_pct": 36.93,
       "ooc_bkk_pct": 14.11,
@@ -969,7 +969,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.59",
+      "hcode": "59",
       "n": 1275,
       "ooc_pct": 24,
       "ooc_bkk_pct": 4.71,
@@ -985,7 +985,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.6",
+      "hcode": "6",
       "n": 464,
       "ooc_pct": 33.84,
       "ooc_bkk_pct": 22.41,
@@ -1001,7 +1001,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.60",
+      "hcode": "60",
       "n": 706,
       "ooc_pct": 15.58,
       "ooc_bkk_pct": 6.8,
@@ -1017,7 +1017,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.61",
+      "hcode": "61",
       "n": 1119,
       "ooc_pct": 9.65,
       "ooc_bkk_pct": 3.84,
@@ -1033,7 +1033,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.62",
+      "hcode": "62",
       "n": 150,
       "ooc_pct": 51.33,
       "ooc_bkk_pct": 41.33,
@@ -1049,7 +1049,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.63",
+      "hcode": "63",
       "n": 567,
       "ooc_pct": 17.28,
       "ooc_bkk_pct": 14.99,
@@ -1065,7 +1065,7 @@
       "district_group": "กรุงธนใต้"
     },
     {
-      "hcode": "ศบส.64",
+      "hcode": "64",
       "n": 1259,
       "ooc_pct": 15.41,
       "ooc_bkk_pct": 10.64,
@@ -1081,7 +1081,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.65",
+      "hcode": "65",
       "n": 1054,
       "ooc_pct": 26.19,
       "ooc_bkk_pct": 22.96,
@@ -1097,7 +1097,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.66",
+      "hcode": "66",
       "n": 281,
       "ooc_pct": 35.94,
       "ooc_bkk_pct": 22.06,
@@ -1113,7 +1113,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.67",
+      "hcode": "67",
       "n": 764,
       "ooc_pct": 21.99,
       "ooc_bkk_pct": 19.76,
@@ -1129,7 +1129,7 @@
       "district_group": "กรุงเทพกลาง"
     },
     {
-      "hcode": "ศบส.68",
+      "hcode": "68",
       "n": 323,
       "ooc_pct": 19.5,
       "ooc_bkk_pct": 17.96,
@@ -1145,7 +1145,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.69",
+      "hcode": "69",
       "n": 730,
       "ooc_pct": 16.58,
       "ooc_bkk_pct": 15.62,
@@ -1161,7 +1161,7 @@
       "district_group": "กรุงเทพเหนือ"
     },
     {
-      "hcode": "ศบส.7",
+      "hcode": "7",
       "n": 446,
       "ooc_pct": 23.32,
       "ooc_bkk_pct": 11.66,
@@ -1177,7 +1177,7 @@
       "district_group": "กรุงเทพใต้"
     },
     {
-      "hcode": "ศบส.8",
+      "hcode": "8",
       "n": 1361,
       "ooc_pct": 41.37,
       "ooc_bkk_pct": 30.12,
@@ -1193,7 +1193,7 @@
       "district_group": "กรุงเทพตะวันออก"
     },
     {
-      "hcode": "ศบส.9",
+      "hcode": "9",
       "n": 122,
       "ooc_pct": 50,
       "ooc_bkk_pct": 28.69,
